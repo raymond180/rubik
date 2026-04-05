@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>解題教學 — 3×3 魔術方塊層先法完整還原</title>
+  <meta name="description" content="3×3 魔術方塊層先法完整解題教學。從白色十字到六面還原，分為四大階段、七個步驟，搭配互動 3D 模型演示每一步。">
+  <meta name="keywords" content="魔術方塊解法,層先法,LBL,白色十字,第一層,第二層,第三層,OLL,PLL">
+  <link rel="canonical" href="https://rubic.inc.tw/solve.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="解題教學 — 3×3 魔術方塊層先法完整還原">
+  <meta property="og:description" content="四大階段、七個步驟，互動 3D 模型帶你一步一步還原魔術方塊。">
+  <meta property="og:image" content="https://rubic.inc.tw/img/og-image.png">
+  <meta property="og:url" content="https://rubic.inc.tw/solve.html">
+  <meta property="og:locale" content="zh_TW">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"首頁","item":"https://rubic.inc.tw/"},
+    {"@type":"ListItem","position":2,"name":"解題教學","item":"https://rubic.inc.tw/solve.html"}
+  ]}
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <svg class="cube-icon" viewBox="0 0 36 36" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="1" fill="#b71234"/><rect x="13" y="1" width="10" height="10" rx="1" fill="#ff5800"/><rect x="25" y="1" width="10" height="10" rx="1" fill="#0046ad"/><rect x="1" y="13" width="10" height="10" rx="1" fill="#009b48"/><rect x="13" y="13" width="10" height="10" rx="1" fill="#ffffff" stroke="#ccc" stroke-width="0.5"/><rect x="25" y="13" width="10" height="10" rx="1" fill="#ffd500"/><rect x="1" y="25" width="10" height="10" rx="1" fill="#ff5800"/><rect x="13" y="25" width="10" height="10" rx="1" fill="#0046ad"/><rect x="25" y="25" width="10" height="10" rx="1" fill="#b71234"/></svg>
+        <span>魔術方塊教學</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">學習</a>
+            <ul class="dropdown-menu">
+              <li><h6 class="dropdown-header">基礎</h6></li>
+              <li><a class="dropdown-item" href="tutorial.html">符號教學</a></li>
+              <li><a class="dropdown-item active" href="solve.html">層先法解題</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><h6 class="dropdown-header">進階</h6></li>
+              <li><a class="dropdown-item" href="algorithms.html">公式速查表</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="timer.html">計時器</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">關於</a></li>
+        </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <button id="theme-toggle-btn" class="theme-toggle" type="button" aria-label="切換深色模式"><i class="bi bi-moon-fill"></i></button>
+          <button id="lang-toggle-btn" class="btn btn-outline-secondary btn-sm lang-toggle" type="button" data-lang-switch="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav aria-label="breadcrumb" class="container mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
+      <li class="breadcrumb-item active" aria-current="page">解題教學</li>
+    </ol>
+  </nav>
+
+  <main class="container py-4">
+    <header class="text-center mb-4">
+      <h1 class="fw-bold">層先法解題教學</h1>
+      <p class="lead text-body-secondary">四大階段、七個步驟，一層一層還原你的魔術方塊</p>
+    </header>
+
+    <!-- 全域提示 -->
+    <div class="alert alert-info mb-4">
+      <i class="bi bi-info-circle me-1"></i>
+      <strong>口訣系統：</strong>以你<strong>面對的那一面為正面（F 面）</strong>，每個符號對應一個物理方向：<br>
+      <strong>R</strong>=右面往上↑、<strong>R'</strong>=右面往下↓、<strong>U</strong>=頂層往右→、<strong>U'</strong>=頂層往左←、<strong>F</strong>=正面順時針⟳、<strong>F'</strong>=正面逆時針⟲<br>
+      <strong>步驟 1-2：</strong>白色面朝上。<strong>步驟 3-7：</strong>翻轉後黃色面朝上，手勢方向相同。<br>
+      不懂符號？<a href="tutorial.html#notation-demo">回教學頁查看互動說明</a>。
+    </div>
+
+    <!-- 階段總覽 -->
+    <div class="phase-overview mb-4">
+      <div class="d-flex flex-wrap justify-content-center gap-2 align-items-center">
+        <span class="phase-badge phase-1" title="第一面">① 第一面</span>
+        <i class="bi bi-arrow-right text-body-secondary"></i>
+        <span class="phase-badge phase-1">② 第一層</span>
+        <i class="bi bi-arrow-right text-body-secondary"></i>
+        <span class="phase-badge phase-flip">🔄 翻轉</span>
+        <i class="bi bi-arrow-right text-body-secondary"></i>
+        <span class="phase-badge phase-3">③ 第二層</span>
+        <i class="bi bi-arrow-right text-body-secondary"></i>
+        <span class="phase-badge phase-3">④⑤⑥⑦ 第三層</span>
+      </div>
+    </div>
+
+    <!-- 教學範例打亂建議 -->
+    <div class="alert alert-secondary mb-4">
+      <i class="bi bi-shuffle me-1"></i>
+      <strong>教學範例：</strong>跟著練習？先把方塊用以下打亂公式打亂，再一步一步跟著教學還原：<br>
+      <code class="fs-6">F R U' B L D F2 R2 D' B' L' U</code>
+      <p class="mb-0 mt-1 small text-body-secondary">每個步驟的情境演示則是獨立的——假設前面步驟已完成，僅展示當前步驟的技巧。</p>
+    </div>
+
+    <!-- 步驟快速跳轉（置頂） -->
+    <div class="step-nav-bar mb-4">
+      <div class="d-flex align-items-center gap-2 mb-2">
+        <h3 class="h6 fw-bold mb-0">步驟導航</h3>
+        <span class="step-progress badge bg-secondary" id="step-progress">1 / 7</span>
+      </div>
+      <div class="d-flex flex-wrap gap-1">
+        <button class="btn btn-sm btn-outline-secondary" data-step="1">① 白色十字</button>
+        <button class="btn btn-sm btn-outline-secondary" data-step="2">② 白色角塊</button>
+        <button class="btn btn-sm btn-outline-secondary" data-step="3">③ 中層邊塊</button>
+        <button class="btn btn-sm btn-outline-secondary" data-step="4">④ 黃色十字</button>
+        <button class="btn btn-sm btn-outline-secondary" data-step="5">⑤ 黃色面</button>
+        <button class="btn btn-sm btn-outline-secondary" data-step="6">⑥ 角塊歸位</button>
+        <button class="btn btn-sm btn-outline-secondary" data-step="7">⑦ 邊塊歸位</button>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- 左欄：3D 方塊 -->
+      <div class="col-lg-5 order-lg-2">
+        <div class="sticky-lg-top" style="top:5rem">
+          <div class="cube-container" id="solve-cube"></div>
+          <div class="cube-controls mt-3">
+            <button class="btn btn-outline-secondary" id="ctrl-reset"><i class="bi bi-arrow-counterclockwise"></i> 重置</button>
+            <div class="speed-control">
+              <label for="speed-range">速度</label>
+              <input type="range" id="speed-range" class="form-range" min="0.5" max="3" step="0.5" value="0.8">
+              <span id="speed-label">0.8x</span>
+            </div>
+          </div>
+          <div class="demo-status" id="demo-status"></div>
+          <p class="text-center small text-body-secondary mt-2"><i class="bi bi-hand-index"></i> 拖曳方塊旋轉視角</p>
+        </div>
+      </div>
+
+      <!-- 右欄：步驟內容 -->
+      <div class="col-lg-7 order-lg-1">
+
+        <!-- ========================================== -->
+        <!-- 第一面：白色十字                           -->
+        <!-- ========================================== -->
+        <article class="step-content" data-step-content="1">
+          <div class="phase-divider phase-1">
+            <span class="phase-label">第一面</span>
+            <span class="phase-desc">白色朝上</span>
+          </div>
+
+          <h2 class="h4 fw-bold">步驟 1：白色十字</h2>
+          <p>目標：在白色面（U 面）拼出十字，且四個邊塊的<strong>側面顏色必須對齊各面中心塊</strong>。</p>
+
+          <div class="alert alert-warning">
+            <i class="bi bi-lightbulb me-1"></i><strong>關鍵觀念：</strong>中心塊永遠不動！白色中心在上面、綠色中心在前面。你需要找到四個帶有白色的邊塊，把它們送到白色面並對齊側面顏色。
+          </div>
+
+          <!-- 完成目標 -->
+          <div class="step-goal card card-body bg-body-tertiary mb-3">
+            <h3 class="h6 fw-bold mb-2"><i class="bi bi-check2-circle text-success me-1"></i>完成目標</h3>
+            <div class="d-flex align-items-start gap-3 flex-wrap">
+              <div class="diagram-box">
+                <svg viewBox="0 0 128 128" width="128" height="128">
+                  <!-- B side edge (blue) -->
+                  <rect x="53" y="3" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/>
+                  <!-- L side edge (orange) -->
+                  <rect x="3" y="53" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/>
+                  <!-- U face 3x3 -->
+                  <rect x="28" y="28" width="22" height="22" rx="2" fill="#ddd"/>
+                  <rect x="53" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="78" y="28" width="22" height="22" rx="2" fill="#ddd"/>
+                  <rect x="28" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="53" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="78" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="28" y="78" width="22" height="22" rx="2" fill="#ddd"/>
+                  <rect x="53" y="78" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="78" y="78" width="22" height="22" rx="2" fill="#ddd"/>
+                  <!-- R side edge (red) -->
+                  <rect x="103" y="53" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/>
+                  <!-- F side edge (green) -->
+                  <rect x="53" y="103" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/>
+                  <!-- connection lines -->
+                  <line x1="64" y1="25" x2="64" y2="28" stroke="#999" stroke-width="1" stroke-dasharray="2"/>
+                  <line x1="25" y1="64" x2="28" y2="64" stroke="#999" stroke-width="1" stroke-dasharray="2"/>
+                  <line x1="100" y1="64" x2="103" y2="64" stroke="#999" stroke-width="1" stroke-dasharray="2"/>
+                  <line x1="64" y1="100" x2="64" y2="103" stroke="#999" stroke-width="1" stroke-dasharray="2"/>
+                </svg>
+                <div class="diagram-caption">白色十字 + 側面展開</div>
+              </div>
+              <div class="small text-body-secondary" style="max-width:220px">
+                <strong>U 面</strong>：四個邊塊白色朝上，形成十字。角塊暫不管。<br>
+                <strong>重點</strong>：每個白色邊塊的<strong>另一面顏色</strong>必須對齊該面的中心色。<br>
+                例：白-<span class="fw-bold" style="color:#009b48">綠</span>邊塊 → 綠色面對著<span class="fw-bold" style="color:#009b48">綠色</span>中心<br>
+                白-<span class="fw-bold" style="color:#b71234">紅</span>邊塊 → 紅色面對著<span class="fw-bold" style="color:#b71234">紅色</span>中心<br>
+                白-<span class="fw-bold" style="color:#ff5800">橙</span>邊塊 → 橙色面對著<span class="fw-bold" style="color:#ff5800">橙色</span>中心<br>
+                白-<span class="fw-bold" style="color:#0046ad">藍</span>邊塊 → 藍色面對著<span class="fw-bold" style="color:#0046ad">藍色</span>中心
+              </div>
+            </div>
+          </div>
+
+          <div class="explain-card mb-3">
+            <strong>💡 找邊塊的三種位置：</strong><br>
+            <strong>1. 底層（D 面）</strong>—— 最常見，對準後做 F2 翻上去<br>
+            <strong>2. 中層</strong>—— 先轉到底層再翻上去<br>
+            <strong>3. 上層但方向錯</strong>—— 先退到中層，再重新插入
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 A：白色邊塊在底層（最常見）</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">白色邊塊（白-綠邊塊）在 D 面，對準 F 面中心後做 F2，邊塊從底層翻 180° 到頂面。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">Before（U 面）</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ddd" stroke="#999" stroke-width="2"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/></svg>
+                  <div class="diagram-caption">F 邊位空缺</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">After（U 面）</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/></svg>
+                  <div class="diagram-caption">F 邊塊歸位 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="F2" data-scenario="白色邊塊在底層">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="F2" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">順順</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 B：白色邊塊在中層</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">白色邊塊卡在 FR 邊位（前面右側），先 R' 把它帶到底層，D 對位，再 F 送上去。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">Before</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<line x1="46.6" y1="91.5" x2="85.6" y2="24.0" stroke="#e74c3c" stroke-width="2" marker-end="url(#a0)"/>
+</svg>
+                  <div class="diagram-caption">FR 卡白色邊 ↑</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">After</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+</svg>
+                  <div class="diagram-caption">UR 邊歸位 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="F' D' R" data-scenario="白色邊塊在中層">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="R' D F" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">下↓ 底→ 順⟳</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 C：白色邊塊在上層但方向錯</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">邊塊在 UF 位但白色朝前面而非上面（翻反了），先 R' 退到中層，U 讓路，F 重新插入。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">Before</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<line x1="85.6" y1="24.0" x2="46.6" y2="55.5" stroke="#e74c3c" stroke-width="2" marker-end="url(#a0)"/>
+</svg>
+                  <div class="diagram-caption">UF 翻反（白朝前）</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">After</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+</svg>
+                  <div class="diagram-caption">UF 邊歸位 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="F U' R" data-scenario="白色邊塊方向錯">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="R' U F'" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">下↓ 右→ 逆⟲</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="explain-card mt-3">
+            <strong>💡 小訣竅：</strong>白色十字沒有固定公式，靠觀察和嘗試。記住：先找到白色邊塊在哪裡，再想辦法送到正確位置。多練幾次就會有感覺！
+          </div>
+        </article>
+
+        <!-- ========================================== -->
+        <!-- 第一層：白色角塊                           -->
+        <!-- ========================================== -->
+        <article class="step-content" data-step-content="2" style="display:none">
+          <div class="phase-divider phase-1">
+            <span class="phase-label">第一層</span>
+            <span class="phase-desc">完成白色面 + 第一層側面 ｜ 白色朝上</span>
+          </div>
+
+          <h2 class="h4 fw-bold">步驟 2：白色角塊</h2>
+          <p>目標：把四個白色角塊插入正確位置，完成整個第一層。角塊有三面顏色，必須三色都對齊。</p>
+
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle me-1"></i><strong>尋找策略：</strong>在底層（D 面）找到有白色的角塊 → 轉動 D 面讓它在目標位置正下方 → 用 <code>R' D' R</code> 插入。白色朝下的話多做幾次 <code>R' D' R D</code>。
+          </div>
+
+          <!-- 完成目標 -->
+          <div class="step-goal card card-body bg-body-tertiary mb-3">
+            <h3 class="h6 fw-bold mb-2"><i class="bi bi-check2-circle text-success me-1"></i>完成目標</h3>
+            <div class="d-flex align-items-start gap-3 flex-wrap">
+              <div class="diagram-box">
+                <svg viewBox="0 0 148 148" width="148" height="148">
+                  <!-- B face 3x3: only bottom row (adjacent to U) is blue -->
+                  <rect x="52" y="2" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="68" y="2" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="84" y="2" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="52" y="18" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="68" y="18" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="84" y="18" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="52" y="34" width="14" height="14" rx="2" fill="#0046ad" stroke="#333"/>
+                  <rect x="68" y="34" width="14" height="14" rx="2" fill="#0046ad" stroke="#333"/>
+                  <rect x="84" y="34" width="14" height="14" rx="2" fill="#0046ad" stroke="#333"/>
+                  <!-- L face 3x3: only right column (adjacent to U) is orange -->
+                  <rect x="2" y="52" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="18" y="52" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="34" y="52" width="14" height="14" rx="2" fill="#ff5800" stroke="#333"/>
+                  <rect x="2" y="68" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="18" y="68" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="34" y="68" width="14" height="14" rx="2" fill="#ff5800" stroke="#333"/>
+                  <rect x="2" y="84" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="18" y="84" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="34" y="84" width="14" height="14" rx="2" fill="#ff5800" stroke="#333"/>
+                  <!-- U face 3x3: all white -->
+                  <rect x="52" y="52" width="14" height="14" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="68" y="52" width="14" height="14" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="84" y="52" width="14" height="14" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="52" y="68" width="14" height="14" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="68" y="68" width="14" height="14" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="84" y="68" width="14" height="14" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="52" y="84" width="14" height="14" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="68" y="84" width="14" height="14" rx="2" fill="#fff" stroke="#aaa"/>
+                  <rect x="84" y="84" width="14" height="14" rx="2" fill="#fff" stroke="#aaa"/>
+                  <!-- R face 3x3: only left column (adjacent to U) is red -->
+                  <rect x="100" y="52" width="14" height="14" rx="2" fill="#b71234" stroke="#333"/>
+                  <rect x="116" y="52" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="132" y="52" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="100" y="68" width="14" height="14" rx="2" fill="#b71234" stroke="#333"/>
+                  <rect x="116" y="68" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="132" y="68" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="100" y="84" width="14" height="14" rx="2" fill="#b71234" stroke="#333"/>
+                  <rect x="116" y="84" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="132" y="84" width="14" height="14" rx="2" fill="#ddd"/>
+                  <!-- F face 3x3: only top row (adjacent to U) is green -->
+                  <rect x="52" y="100" width="14" height="14" rx="2" fill="#009b48" stroke="#333"/>
+                  <rect x="68" y="100" width="14" height="14" rx="2" fill="#009b48" stroke="#333"/>
+                  <rect x="84" y="100" width="14" height="14" rx="2" fill="#009b48" stroke="#333"/>
+                  <rect x="52" y="116" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="68" y="116" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="84" y="116" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="52" y="132" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="68" y="132" width="14" height="14" rx="2" fill="#ddd"/>
+                  <rect x="84" y="132" width="14" height="14" rx="2" fill="#ddd"/>
+                </svg>
+                <div class="diagram-caption">白色面 + 第一層側面展開</div>
+              </div>
+              <div class="small text-body-secondary" style="max-width:220px">
+                <strong>U 面</strong>：全部 9 格白色。<br>
+                <strong>四個側面</strong>：第一層（與白色面相鄰的那一排）全部對齊各面中心色。<br>
+                完成後，從側面看每一面的最上排三格都是同一顏色。
+              </div>
+            </div>
+          </div>
+
+          <div class="explain-card mb-3">
+            <strong>💡 核心動作：R' D' R</strong>（下↓ 底逆← 上↑）<br>
+            把右面打開 → 底層轉角塊到位 → 右面關回。<br>
+            這個「開—轉—關」的動作是第一層的基礎，角塊白色朝下時重複 <code>R' D' R D</code> 多次即可。
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 A：角塊在底層右前方</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">白色角塊（白-綠-紅）在 DFR 位，白色面朝前方。<code>R'</code> 拉開右面→ <code>D'</code> 把角塊轉到下方→ <code>R</code> 右面復原，角塊被送入 UFR 位。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">Before（F 面）</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd" stroke="#999" stroke-width="2"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#999" stroke-width="2"/></svg>
+                  <div class="diagram-caption">UFR 空缺，DFR 有白角</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">After（F 面）</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#009b48"/></svg>
+                  <div class="diagram-caption">角塊歸位 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="R' D R" data-scenario="角塊在底層右前方">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="R' D' R" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">下↓ 底逆← 上↑</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 B：角塊在底層，白色朝下</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">白色面朝下（在 D 面），需要反覆「R' D' R D」把角塊翻正再插入。每次執行會把白色角塊旋轉 120°，通常 2-3 次即可到位。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">Before</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<line x1="62.2" y1="100.5" x2="101.2" y2="33.0" stroke="#e74c3c" stroke-width="2" marker-end="url(#a0)"/>
+</svg>
+                  <div class="diagram-caption">DFR 白色朝下 ↑</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">After</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+</svg>
+                  <div class="diagram-caption">角塊歸位 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="R' D R D' R' D R" data-scenario="角塊白色朝下">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="R' D' R D R' D' R" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">下↓ 底逆← 上↑ ×重複</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 C：角塊已在上層但位置錯</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">角塊卡在第一層 UFR 位但方向不對（白色朝右或朝前），先 R' D' R 把它拆到底層，再重新用情境 A/B 插回。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">Before</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<line x1="62.2" y1="64.5" x2="77.8" y2="64.5" stroke="#e74c3c" stroke-width="2" marker-end="url(#a0)"/>
+</svg>
+                  <div class="diagram-caption">UFR 方向錯（白朝右）</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">After</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#fff" stroke="#333" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+</svg>
+                  <div class="diagram-caption">角塊歸位 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="R' D R D2 R' D R" data-scenario="角塊位置錯誤">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="R' D' R D2 R' D' R" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">下↓ 底逆← 上↑ → D2 → 重插</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="explain-card mt-3">
+            <strong>💡 角塊不在底層？</strong>如果角塊已經在第一層但位置錯，先用 <code>R' D' R</code> 把它拆到底層，再重新插入正確位置。
+          </div>
+        </article>
+
+        <!-- ========================================== -->
+        <!-- 第二層：中層邊塊                           -->
+        <!-- ========================================== -->
+        <article class="step-content" data-step-content="3" style="display:none">
+          <div class="phase-divider phase-flip">
+            <span class="phase-label">🔄 翻轉方塊</span>
+            <span class="phase-desc">白色朝下、黃色朝上</span>
+          </div>
+          <div class="alert alert-success mb-4">
+            <i class="bi bi-arrow-repeat me-2 fs-5"></i>
+            <strong>恭喜完成第一層！</strong>現在把方塊翻過來 — <strong>白色面朝下、黃色面朝上</strong>。<br>
+            從這一步開始，所有操作都以<strong>黃色面朝上</strong>進行，正面依情況放置。<br>
+            口訣方向不變：R=右面往上↑、U=頂層往右→、F=正面順時針⟳。
+          </div>
+
+          <div class="phase-divider phase-3">
+            <span class="phase-label">第二層</span>
+            <span class="phase-desc">完成中間層邊塊 ｜ 黃色朝上</span>
+          </div>
+
+          <h2 class="h4 fw-bold">步驟 3：中層邊塊</h2>
+          <p>目標：把中層的四個邊塊（例如綠-紅邊塊）送入正確位置。翻轉後，黃色面朝上、白色面（已完成的第一層）在底部。</p>
+
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle me-1"></i><strong>判斷方法：</strong>在頂層（U 面）找到「沒有黃色」的邊塊。轉動 U 面讓邊塊的顏色對齊正面（F 面）中心，再看另一面的顏色需要往<strong>右</strong>還是往<strong>左</strong>。
+          </div>
+
+          <!-- 完成目標 -->
+          <div class="step-goal card card-body bg-body-tertiary mb-3">
+            <h3 class="h6 fw-bold mb-2"><i class="bi bi-check2-circle text-success me-1"></i>完成目標</h3>
+            <div class="d-flex align-items-start gap-3 flex-wrap">
+              <div class="diagram-box">
+                <div class="diagram-label">側面（任一面）</div>
+                <svg viewBox="0 0 78 78" width="78" height="78">
+                  <!-- Top row: not yet solved (yellow layer) -->
+                  <rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/>
+                  <rect x="28" y="3" width="22" height="22" rx="2" fill="#ddd"/>
+                  <rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/>
+                  <!-- Middle row: second layer DONE -->
+                  <rect x="3" y="28" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/>
+                  <rect x="28" y="28" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/>
+                  <rect x="53" y="28" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/>
+                  <!-- Bottom row: first layer (already done) -->
+                  <rect x="3" y="53" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/>
+                  <rect x="28" y="53" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/>
+                  <rect x="53" y="53" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/>
+                </svg>
+                <div class="diagram-caption">下兩層完成 ✓ 上層待解</div>
+              </div>
+              <div class="small text-body-secondary" style="max-width:220px">
+                從側面看，<strong>下兩層</strong>（第一層 + 第二層）每面都已完成，全部是同一顏色。<br>
+                <strong>頂層</strong>（黃色面那層）的邊塊和角塊顏色還沒對齊，留待步驟 4-7 解決。
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 A：邊塊要往右邊插</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">綠-紅邊塊在頂層 UF 位，綠色已對齊前面（F 面）中心，紅色在右邊 → 需要插入 FR 槽。<br>
+            <strong>口訣：</strong>「頂層往右→右面上拉→頂層回來→右面下放→頂層往左→前面拉開→頂層回來→前面關上」。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">Before（F 面）</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ddd" stroke="#999" stroke-width="2"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#009b48"/></svg>
+                  <div class="diagram-caption">FR 邊位空缺</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">After（F 面）</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#009b48"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#009b48"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#009b48"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#009b48"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#009b48"/></svg>
+                  <div class="diagram-caption">FR 邊塊歸位 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="F' U' F U R U R' U'" data-scenario="邊塊往右插">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="U R U' R' U' F' U F" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">右→ 上↑ 左← 下↓ 左← 逆⟲ 右→ 順⟳</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 B：邊塊要往左邊插</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">綠-橙邊塊在頂層 UF 位，綠色已對齊前面（F 面）中心，橙色在左邊 → 需要插入 FL 槽。<br>
+            <strong>口訣：</strong>「頂層往左→左面上拉→頂層回來→左面下放→頂層往右→前面拉開→頂層回來→前面關上」。鏡像右插公式。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">Before</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#ffd500" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<line x1="85.6" y1="24.0" x2="77.8" y2="82.5" stroke="#e74c3c" stroke-width="2" marker-end="url(#a0)"/>
+</svg>
+                  <div class="diagram-caption">UF 橙色邊 → FL 槽</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">After</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#ffd500" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+</svg>
+                  <div class="diagram-caption">FL 邊歸位 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="F U F' U' L' U' L U" data-scenario="邊塊往左插">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="U' L' U L U F U' F'" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">左← 推↓ 右→ 拉↑ 右→ 順⟳ 左← 逆⟲</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 C：邊塊已在中層但位置錯誤</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">邊塊已經在中層但方向不對或位置錯誤？先做一次插入公式把它「踢」到頂層，再重新對位插入。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">Before</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#ffd500" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<line x1="109.0" y1="64.5" x2="31.0" y2="64.5" stroke="#e74c3c" stroke-width="2" marker-end="url(#a0)"/>
+</svg>
+                  <div class="diagram-caption">FR 位錯誤邊 → 踢出</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">After</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 120" width="140" height="120">
+<marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#e74c3c"/></marker>
+<marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#3498db"/></marker>
+<marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10z" fill="#27ae60"/></marker>
+<polygon points="23.2,33.0 38.8,42.0 54.4,33.0 38.8,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 70.0,42.0 54.4,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 85.6,51.0 70.0,42.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,24.0 54.4,33.0 70.0,24.0 54.4,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,33.0 70.0,42.0 85.6,33.0 70.0,24.0" fill="#ffd500" stroke="#333" stroke-width="0.7"/>
+<polygon points="70.0,42.0 85.6,51.0 101.2,42.0 85.6,33.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,15.0 70.0,24.0 85.6,15.0 70.0,6.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="70.0,24.0 85.6,33.0 101.2,24.0 85.6,15.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,33.0 101.2,42.0 116.8,33.0 101.2,24.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,33.0 38.8,42.0 38.8,60.0 23.2,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,42.0 54.4,51.0 54.4,69.0 38.8,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,51.0 70.0,60.0 70.0,78.0 54.4,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,51.0 38.8,60.0 38.8,78.0 23.2,69.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="38.8,60.0 54.4,69.0 54.4,87.0 38.8,78.0" fill="#b71234" stroke="#333" stroke-width="0.7"/>
+<polygon points="54.4,69.0 70.0,78.0 70.0,96.0 54.4,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="23.2,69.0 38.8,78.0 38.8,96.0 23.2,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="38.8,78.0 54.4,87.0 54.4,105.0 38.8,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="54.4,87.0 70.0,96.0 70.0,114.0 54.4,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,51.0 70.0,60.0 70.0,78.0 85.6,69.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,42.0 85.6,51.0 85.6,69.0 101.2,60.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,33.0 101.2,42.0 101.2,60.0 116.8,51.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="85.6,69.0 70.0,78.0 70.0,96.0 85.6,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,60.0 85.6,69.0 85.6,87.0 101.2,78.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="116.8,51.0 101.2,60.0 101.2,78.0 116.8,69.0" fill="#009b48" stroke="#333" stroke-width="0.7"/>
+<polygon points="85.6,87.0 70.0,96.0 70.0,114.0 85.6,105.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="101.2,78.0 85.6,87.0 85.6,105.0 101.2,96.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+<polygon points="116.8,69.0 101.2,78.0 101.2,96.0 116.8,87.0" fill="#ddd" stroke="#bbb" stroke-width="0.7"/>
+</svg>
+                  <div class="diagram-caption">重新插入 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="F' U' F U R U R' U' D" data-scenario="邊塊方向錯需先剔出">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="D' U R U' R' U' F' U F" disabled>
+                ▶ D' + 右插 <span class="badge bg-success-subtle text-success ms-1">底逆 + 右插公式</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="explain-card mt-3">
+            <strong>💡 口訣記憶：</strong><br>
+            向右插：<strong>右→ 上↑ 左← 下↓ &nbsp;左← 逆⟲ 右→ 順⟳</strong>（U R U' R' U' F' U F）<br>
+            向左插：<strong>左← 推↓ 右→ 拉↑ &nbsp;右→ 順⟳ 左← 逆⟲</strong>（U' L' U L U F U' F'）<br>
+            兩個公式互為鏡像。核心邏輯：先把頂層邊塊送開、騰出空間，再配合前面/側面夾入中層槽位。<br>
+            <strong>💡 邊塊在中層但位置錯？</strong>先對著那個槽位做一次插入公式，把錯誤邊塊踢到頂層，再重新對齊插入。
+          </div>
+        </article>
+
+        <!-- ========================================== -->
+        <!-- 🔄 翻轉提示                                -->
+        <!-- ========================================== -->
+        <article class="step-content" data-step-content="4" style="display:none">
+          <div class="phase-divider phase-3">
+            <span class="phase-label">第三層</span>
+            <span class="phase-desc">黃色十字 ｜ 黃色朝上</span>
+          </div>
+
+          <h2 class="h4 fw-bold">步驟 4：黃色十字</h2>
+          <p>目標：讓黃色面（U 面）的四個邊塊都朝上（形成十字），<strong>暫不管側面顏色</strong>。</p>
+
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle me-1"></i><strong>只需一個公式：</strong><code>F R U R' U' F'</code>（順⟳ 上↑ 左← 下↓ 右→ 逆⟲），根據黃色面起始狀態重複 1~3 次即可。<br>
+            觀察黃色面邊塊朝上的數量：<strong>點狀</strong>（0 個）→ <strong>L 型</strong>（2 個呈 L）→ <strong>一字</strong>（2 個呈直線）→ <strong>十字</strong>（完成）。
+          </div>
+
+          <!-- 完成目標 -->
+          <div class="step-goal card card-body bg-body-tertiary mb-3">
+            <h3 class="h6 fw-bold mb-2"><i class="bi bi-check2-circle text-success me-1"></i>完成目標</h3>
+            <div class="d-flex align-items-start gap-3 flex-wrap">
+              <div class="diagram-box">
+                <div class="diagram-label">U 面（黃色十字）</div>
+                <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ddd"/></svg>
+              </div>
+              <div class="small text-body-secondary" style="max-width:220px">
+                黃色面形成<strong>十字</strong>：中心 + 四個邊塊的黃色朝上。<br>
+                四個<strong>角塊</strong>的黃色不一定朝上（灰色），留到步驟 5 處理。
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 A：只有中心（點狀）→ 做三次</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">U 面只有正中心是黃色。做第一次變 L 型，轉 U2 調整朝向後再做兩次即可完成十字。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面：點狀</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ddd"/></svg>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面：L 型</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ddd"/></svg>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面：一字</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ddd"/></svg>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面：十字 ✓</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ddd"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="F U R U' R' F' U F R U R' U' F'" data-scenario="頂面只有中心">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="F R U R' U' F' U2 F R U R' U' F' F R U R' U' F'" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">順⟳ 上↑ 左← 下↓ 右→ 逆⟲ ×3</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 B：L 型（兩個邊朝上）</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">L 型的兩個黃色邊位於<strong>左邊和後面</strong>（俯視圖左上角）。轉動 U 面把 L 放在左後方，做兩次公式：第一次變一字，第二次變十字。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面：L 型（左後）</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ddd"/></svg>
+                  <div class="diagram-caption">UB+UL 邊黃色朝上</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面：十字 ✓</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ddd"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="F R U R' U' F'" data-scenario="L 型">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="F R U R' U' F' F R U R' U' F'" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">順⟳ 上↑ 左← 下↓ 右→ 逆⟲ ×2</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 C：一字型（水平）</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">兩個黃色邊呈<strong>水平排列</strong>（左右各一），把一字橫放再做公式就能變十字。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面：一字型</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ddd"/></svg>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面：十字 ✓</div>
+                  <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ddd"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ddd"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ddd"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="F U R U' R' F'" data-scenario="一字型">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="F R U R' U' F'" disabled>
+                ▶ 執行解法 <span class="badge bg-success-subtle text-success ms-1">順⟳ 上↑ 左← 下↓ 右→ 逆⟲</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="explain-card mt-3">
+            <strong>💡 公式：</strong><code>F R U R' U' F'</code>（順⟳ 上↑ 左← 下↓ 右→ 逆⟲）<br>
+            <strong>L 在左後方</strong>做公式。一字<strong>橫放</strong>做公式。<br>
+            進展順序：點 →<small>（做1次）</small>→ L 型 →<small>（做1次）</small>→ 一字 →<small>（做1次）</small>→ 十字。<br>
+            注意：此時<strong>黃色面朝上</strong>。每次做完後觀察 U 面圖形、調整朝向、再做下一次。
+          </div>
+        </article>
+
+        <!-- ========================================== -->
+        <!-- 第三層：Step 5 — 黃色十字邊塊配色            -->
+        <!-- ========================================== -->
+        <article class="step-content" data-step-content="5" style="display:none">
+          <div class="phase-divider phase-3">
+            <span class="phase-label">第三層</span>
+            <span class="phase-desc">十字邊塊配色 ｜ 黃色朝上</span>
+          </div>
+
+          <h2 class="h4 fw-bold">步驟 5：黃色十字邊塊配色</h2>
+          <p>目標：讓黃色十字的四個邊塊<strong>側面顏色</strong>都對齊各面中心，形成完整的頂層十字。</p>
+
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle me-1"></i><strong>判斷方法：</strong>轉動 U 面，看能讓幾個邊塊的側面與中心對齊。<br>
+            <strong>4 個對齊：</strong>已完成，直接跳到步驟 6。<br>
+            <strong>2 個相鄰對齊：</strong>把對齊的那兩面放在<strong>後方和右方</strong>，做一次公式。<br>
+            <strong>0 個對齊：</strong>隨便做一次公式，再轉 U2 調整，就會出現 2 個相鄰對齊。
+          </div>
+
+          <!-- 完成目標 -->
+          <div class="step-goal card card-body bg-body-tertiary mb-3">
+            <h3 class="h6 fw-bold mb-2"><i class="bi bi-check2-circle text-success me-1"></i>完成目標</h3>
+            <div class="d-flex align-items-start gap-3 flex-wrap">
+              <div class="diagram-box">
+                <div class="diagram-label">U 面俯視</div>
+                <svg viewBox="0 0 90 90" width="90" height="90"><rect x="5" y="5" width="80" height="80" rx="4" fill="none" stroke="#ccc" stroke-width="1"/><rect x="35" y="8" width="20" height="10" rx="3" fill="#ffd500" stroke="#333"/><text x="45" y="17" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="8" y="35" width="10" height="20" rx="3" fill="#ffd500" stroke="#333"/><text x="13" y="49" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="72" y="35" width="10" height="20" rx="3" fill="#ffd500" stroke="#333"/><text x="77" y="49" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="35" y="72" width="20" height="10" rx="3" fill="#ffd500" stroke="#333"/><text x="45" y="80" text-anchor="middle" font-size="8" fill="#333">✓</text></svg>
+              </div>
+              <div class="small text-body-secondary" style="max-width:220px">
+                四個邊塊的<strong>側面顏色全部對齊中心</strong>。<br>
+                角塊的位置和方向留到步驟 6、7 處理。
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 A：2 個相鄰邊塊對齊</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">把已對齊的兩面放在<strong>後方（B）和右方（R）</strong>，公式會三換前方、左方、後方的邊塊，使四面全部對齊。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面俯視</div>
+                  <svg viewBox="0 0 90 90" width="90" height="90"><rect x="5" y="5" width="80" height="80" rx="4" fill="none" stroke="#ccc" stroke-width="1"/><rect x="35" y="8" width="20" height="10" rx="3" fill="#ffd500" stroke="#333"/><text x="45" y="17" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="8" y="35" width="10" height="20" rx="3" fill="#ddd" stroke="#999" stroke-width="2"/><rect x="72" y="35" width="10" height="20" rx="3" fill="#ffd500" stroke="#333"/><text x="77" y="49" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="35" y="72" width="20" height="10" rx="3" fill="#ddd" stroke="#999" stroke-width="2"/></svg>
+                  <div class="diagram-caption">B+R 對齊，F+L 不對</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面俯視 ✓</div>
+                  <svg viewBox="0 0 90 90" width="90" height="90"><rect x="5" y="5" width="80" height="80" rx="4" fill="none" stroke="#ccc" stroke-width="1"/><rect x="35" y="8" width="20" height="10" rx="3" fill="#ffd500" stroke="#333"/><text x="45" y="17" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="8" y="35" width="10" height="20" rx="3" fill="#ffd500" stroke="#333"/><text x="13" y="49" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="72" y="35" width="10" height="20" rx="3" fill="#ffd500" stroke="#333"/><text x="77" y="49" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="35" y="72" width="20" height="10" rx="3" fill="#ffd500" stroke="#333"/><text x="45" y="80" text-anchor="middle" font-size="8" fill="#333">✓</text></svg>
+                  <div class="diagram-caption">四面全部對齊 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="U' R U2 R' U' R U' R'" data-scenario="2 個相鄰對齊">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="R U R' U R U2 R' U" disabled>
+                ▶ 邊塊三換 <span class="badge bg-success-subtle text-success ms-1">上↑ 右→ 下↓ 右→ 上↑ 右右 下↓ 右→</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 B：0 個邊塊對齊</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">不管方向，先做一次公式，再轉 <code>U2</code>，四個邊塊就會全部對齊。</p>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="U R U2 R' U' R U' R'" data-scenario="0 個邊塊對齊">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="R U R' U R U2 R' U U2" disabled>
+                ▶ 做一次 + U2
+              </button>
+            </div>
+          </div>
+
+          <div class="explain-card mt-3">
+            <strong>💡 邊塊三換公式（黃色朝上）：</strong><code>R U R' U R U2 R' U</code><br>
+            效果：保持 B 和 R 邊不動，三換其餘三個邊塊。<br>
+            <strong>0 個對齊？</strong>做一次公式 → 轉 U2 即完成。
+          </div>
+        </article>
+
+        <!-- ========================================== -->
+        <!-- 第三層：Step 6 — 頂層角塊歸位              -->
+        <!-- ========================================== -->
+        <article class="step-content" data-step-content="6" style="display:none">
+          <div class="phase-divider phase-3">
+            <span class="phase-label">第三層</span>
+            <span class="phase-desc">角塊歸位 ｜ 黃色朝上</span>
+          </div>
+
+          <h2 class="h4 fw-bold">步驟 6：頂層角塊歸位</h2>
+          <p>目標：把頂層四個角塊移到正確的位置（三色對應三個面）。黃色面不一定全朝上，但角塊<strong>位置</strong>要對。</p>
+
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle me-1"></i><strong>判斷方法：</strong>轉動 U 面，觀察每個角塊的三個顏色是否都屬於它所在的三個面。<br>
+            <strong>找到 1 個正確的角：</strong>把它放在<strong>右前方（UFR 位）</strong>，做公式。<br>
+            <strong>找不到正確的角？</strong>直接做一次公式，做完必定會出現正確的角。
+          </div>
+
+          <!-- 完成目標 -->
+          <div class="step-goal card card-body bg-body-tertiary mb-3">
+            <h3 class="h6 fw-bold mb-2"><i class="bi bi-check2-circle text-success me-1"></i>完成目標</h3>
+            <div class="d-flex align-items-start gap-3 flex-wrap">
+              <div class="diagram-box">
+                <div class="diagram-label">U 面俯視</div>
+                <svg viewBox="0 0 90 90" width="90" height="90"><rect x="5" y="5" width="80" height="80" rx="4" fill="none" stroke="#ccc" stroke-width="1"/><circle cx="20" cy="20" r="10" fill="#ffd500" stroke="#333"/><text x="20" y="24" text-anchor="middle" font-size="9" fill="#333">✓</text><circle cx="70" cy="20" r="10" fill="#ffd500" stroke="#333"/><text x="70" y="24" text-anchor="middle" font-size="9" fill="#333">✓</text><circle cx="20" cy="70" r="10" fill="#ffd500" stroke="#333"/><text x="20" y="74" text-anchor="middle" font-size="9" fill="#333">✓</text><circle cx="70" cy="70" r="10" fill="#ffd500" stroke="#333"/><text x="70" y="74" text-anchor="middle" font-size="9" fill="#333">✓</text></svg>
+              </div>
+              <div class="small text-body-secondary" style="max-width:220px">
+                四個角塊都在<strong>正確的位置</strong>（三色對應三個面）。<br>
+                角塊的黃色可能還沒朝上，留到步驟 7 處理。
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 A：有 1 個正確的角塊</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">把正確的角塊放在<strong>右前方（UFR 位）</strong>。公式會<strong>三換</strong>其餘三個角塊的位置。</p>
+            <div class="before-after-diagram mb-2">
+              <div class="diagram-pair">
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面俯視</div>
+                  <svg viewBox="0 0 90 90" width="90" height="90"><rect x="5" y="5" width="80" height="80" rx="4" fill="none" stroke="#ccc" stroke-width="1"/><circle cx="20" cy="20" r="10" fill="#ddd" stroke="#999" stroke-width="2"/><text x="20" y="24" text-anchor="middle" font-size="9" fill="#333">?</text><circle cx="70" cy="20" r="10" fill="#ddd" stroke="#999" stroke-width="2"/><text x="70" y="24" text-anchor="middle" font-size="9" fill="#333">?</text><circle cx="20" cy="70" r="10" fill="#ddd" stroke="#999" stroke-width="2"/><text x="20" y="74" text-anchor="middle" font-size="9" fill="#333">?</text><circle cx="70" cy="70" r="10" fill="#ffd500" stroke="#333"/><text x="70" y="74" text-anchor="middle" font-size="9" fill="#333">✓</text></svg>
+                  <div class="diagram-caption">右前角 ✓，其餘三換</div>
+                </div>
+                <div class="diagram-arrow"><i class="bi bi-arrow-right fs-4"></i></div>
+                <div class="diagram-box">
+                  <div class="diagram-label">U 面俯視</div>
+                  <svg viewBox="0 0 90 90" width="90" height="90"><rect x="5" y="5" width="80" height="80" rx="4" fill="none" stroke="#ccc" stroke-width="1"/><circle cx="20" cy="20" r="10" fill="#ffd500" stroke="#333"/><text x="20" y="24" text-anchor="middle" font-size="9" fill="#333">✓</text><circle cx="70" cy="20" r="10" fill="#ffd500" stroke="#333"/><text x="70" y="24" text-anchor="middle" font-size="9" fill="#333">✓</text><circle cx="20" cy="70" r="10" fill="#ffd500" stroke="#333"/><text x="20" y="74" text-anchor="middle" font-size="9" fill="#333">✓</text><circle cx="70" cy="70" r="10" fill="#ffd500" stroke="#333"/><text x="70" y="74" text-anchor="middle" font-size="9" fill="#333">✓</text></svg>
+                  <div class="diagram-caption">四角全部歸位 ✓</div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="L' U R U' L U R' U'" data-scenario="1 個正確角塊">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="U R U' L' U R' U' L" disabled>
+                ▶ 角塊三換 <span class="badge bg-success-subtle text-success ms-1">上⟳ 右→ 下⟲ 左← 上⟳ 左→ 下⟲ 右←</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 B：沒有正確的角塊</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">四個角都不在正確位置。直接做一次公式，做完必定會出現正確角塊，再把它放到右前方做第二次。</p>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="L' U R U' L U R' U' L' U R U' L U R' U'" data-scenario="沒有正確角塊">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="U R U' L' U R' U' L U R U' L' U R' U' L" disabled>
+                ▶ 做兩次
+              </button>
+            </div>
+          </div>
+
+          <div class="explain-card mt-3">
+            <strong>💡 角塊三換公式（黃色朝上）：</strong><code>U R U' L' U R' U' L</code><br>
+            效果：保持 UFR 角不動，三換其餘三個角塊的位置。<br>
+            <strong>0 個正確？</strong>先做一次 → 找到正確角放右前 → 再做一次。
+          </div>
+        </article>
+
+        <!-- ========================================== -->
+        <!-- 第三層：Step 7 — 角塊翻轉（還原方塊）        -->
+        <!-- ========================================== -->
+        <article class="step-content" data-step-content="7" style="display:none">
+          <div class="phase-divider phase-3">
+            <span class="phase-label">第三層</span>
+            <span class="phase-desc">角塊翻轉 — 最後一步！ ｜ 白色朝上</span>
+          </div>
+
+          <h2 class="h4 fw-bold">步驟 7：角塊翻轉（還原方塊）</h2>
+          <p>目標：把所有角塊的黃色面翻到底部 — 六面完成！🎉</p>
+
+          <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-1"></i><strong>重要！</strong>先把方塊翻過來，<strong>白色朝上、黃色朝下</strong>。<br>
+            操作過程中<strong>絕對不要轉整個方塊</strong>，只能用 R 和 D 操作。<br>
+            中途方塊看起來會很亂，這是正常的！全部做完就會還原。
+          </div>
+
+          <!-- 完成目標 -->
+          <div class="step-goal card card-body bg-body-tertiary mb-3">
+            <h3 class="h6 fw-bold mb-2"><i class="bi bi-check2-circle text-success me-1"></i>完成目標</h3>
+            <div class="d-flex align-items-start gap-3 flex-wrap">
+              <div class="diagram-box">
+                <div class="diagram-label">🎉 六面完成！</div>
+                <svg viewBox="0 0 90 90" width="90" height="90"><rect x="5" y="5" width="80" height="80" rx="4" fill="none" stroke="#ccc" stroke-width="1"/><circle cx="20" cy="20" r="10" fill="#ffd500" stroke="#333"/><text x="20" y="24" text-anchor="middle" font-size="9" fill="#333">✓</text><circle cx="70" cy="20" r="10" fill="#ffd500" stroke="#333"/><text x="70" y="24" text-anchor="middle" font-size="9" fill="#333">✓</text><circle cx="20" cy="70" r="10" fill="#ffd500" stroke="#333"/><text x="20" y="74" text-anchor="middle" font-size="9" fill="#333">✓</text><circle cx="70" cy="70" r="10" fill="#ffd500" stroke="#333"/><text x="70" y="74" text-anchor="middle" font-size="9" fill="#333">✓</text><rect x="35" y="8" width="20" height="10" rx="3" fill="#ffd500" stroke="#333"/><text x="45" y="17" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="8" y="35" width="10" height="20" rx="3" fill="#ffd500" stroke="#333"/><text x="13" y="49" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="72" y="35" width="10" height="20" rx="3" fill="#ffd500" stroke="#333"/><text x="77" y="49" text-anchor="middle" font-size="8" fill="#333">✓</text><rect x="35" y="72" width="20" height="10" rx="3" fill="#ffd500" stroke="#333"/><text x="45" y="80" text-anchor="middle" font-size="8" fill="#333">✓</text></svg>
+              </div>
+              <div class="small text-body-secondary" style="max-width:220px">
+                <strong>六面完成！🎉</strong><br>
+                所有角塊和邊塊全部歸位，每一面都是同一個顏色。
+              </div>
+            </div>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">操作步驟</h3>
+          <div class="scenario-item mb-3">
+            <ol class="small text-body-secondary">
+              <li>翻轉方塊：<strong>白色朝上、黃色朝下</strong>（x2）。</li>
+              <li>看右下前角（DFR 位）的底面是不是黃色。</li>
+              <li><strong>不是黃色？</strong>重複做 <code>R' D' R D</code>（2 次或 4 次），直到該角的黃色面朝下。</li>
+              <li>只轉 <strong>D</strong>（底層），把下一個未完成的角塊轉到 DFR 位。</li>
+              <li>重複步驟 3-4，直到四個角都朝黃色朝下。</li>
+              <li>最後可能需要轉 D 面對齊底層。</li>
+            </ol>
+          </div>
+
+          <h3 class="h6 fw-bold mt-3">情境 A：角塊翻轉（示範）</h3>
+          <div class="scenario-item mb-3">
+            <p class="small text-body-secondary">示範：翻轉兩個角塊（各需 2 次和 4 次 R'D'RD），最後轉 D 對齊。</p>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-sm btn-outline-warning" data-setup-algo="D2 D' R' D R D' R' D R D' R' D R D' R' D R D' D' R' D R D' R' D R x2" data-scenario="角塊翻轉">🔧 建立情境</button>
+              <button class="btn btn-sm btn-outline-success" data-solve-algo="x2 R' D' R D R' D' R D D R' D' R D R' D' R D R' D' R D R' D' R D D2" disabled>
+                ▶ 翻轉角塊 <span class="badge bg-success-subtle text-success ms-1">重複 R' D' R D</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="alert alert-success mt-4">
+            <i class="bi bi-trophy me-2 fs-5"></i>
+            <strong>恭喜！🎉</strong> 完成步驟 7 後，你的魔術方塊就還原了！<br>
+            多練幾次，公式會越來越熟。接下來可以挑戰速度！
+          </div>
+
+          <div class="explain-card mt-3">
+            <strong>💡 角塊翻轉（白色朝上）：</strong><code>R' D' R D</code>（重複 2 或 4 次）<br>
+            效果：在 DFR 位反覆做 R'D'RD，直到該角的黃色面朝下。<br>
+            <strong>重要：</strong>換角時只能轉 D 面，不能轉整個方塊！中途看起來很亂是正常的。
+          </div>
+        </article>
+
+        <!-- ========================================== -->
+        <!-- 公式總表                                    -->
+        <!-- ========================================== -->
+        <section class="mt-5" id="formula-table">
+          <h2 class="h4 fw-bold mb-3"><i class="bi bi-list-check me-2"></i>公式總表</h2>
+          <p class="text-body-secondary">所有步驟用到的公式，按階段分類。步驟 1-2 為白色朝上，步驟 3-7 為翻轉後（黃色朝上）。</p>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>階段</th>
+                  <th>名稱</th>
+                  <th>公式</th>
+                  <th>口訣</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="phase-badge-sm phase-1">第一面</span></td>
+                  <td>送邊塊上去</td>
+                  <td class="font-monospace">F2</td>
+                  <td>順順</td>
+                </tr>
+                <tr>
+                  <td><span class="phase-badge-sm phase-1">第一層</span></td>
+                  <td>角塊插入</td>
+                  <td class="font-monospace">R' D' R</td>
+                  <td>下↓ 底逆← 上↑</td>
+                </tr>
+                <tr>
+                  <td><span class="phase-badge-sm phase-3">第二層</span></td>
+                  <td>右插</td>
+                  <td class="font-monospace">U R U' R' U' F' U F</td>
+                  <td>右 上 左 下 左 逆 右 順</td>
+                </tr>
+                <tr>
+                  <td><span class="phase-badge-sm phase-3">第二層</span></td>
+                  <td>左插</td>
+                  <td class="font-monospace">U' L' U L U F U' F'</td>
+                  <td>左 推 右 拉 右 順 左 逆</td>
+                </tr>
+                <tr>
+                  <td><span class="phase-badge-sm phase-3">第三層</span></td>
+                  <td>黃色十字</td>
+                  <td class="font-monospace">F R U R' U' F'</td>
+                  <td>順 上 右 下 左 逆</td>
+                </tr>
+                <tr>
+                  <td><span class="phase-badge-sm phase-3">第三層</span></td>
+                  <td>邊塊三換</td>
+                  <td class="font-monospace">R U R' U R U2 R' U</td>
+                  <td>上 右 下 右 上 右右 下 右</td>
+                </tr>
+                <tr>
+                  <td><span class="phase-badge-sm phase-3">第三層</span></td>
+                  <td>角塊三換</td>
+                  <td class="font-monospace">U R U' L' U R' U' L</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><span class="phase-badge-sm phase-3">第三層</span></td>
+                  <td>角塊翻轉</td>
+                  <td class="font-monospace">R' D' R D</td>
+                  <td>重複 2 或 4 次</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4 bg-body-tertiary border-top">
+    <div class="container text-center">
+      <p class="mb-1">© 2026 魔術方塊教學</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://rubic.inc.tw/index.html">rubic.inc.tw</a>
+        <a href="https://github.com/raymond180/rubic/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/raymond180/rubic/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/cube.js"></script>
+  <script src="js/solve.js" defer></script>
+</body>
+</html>

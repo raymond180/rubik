@@ -1,0 +1,197 @@
+/* ============================================================
+   魔術方塊教學網站 — 全站自訂樣式
+   ============================================================ */
+
+:root {
+  --cube-white: #ffffff;
+  --cube-yellow: #ffd500;
+  --cube-red: #b71234;
+  --cube-orange: #ff5800;
+  --cube-blue: #0046ad;
+  --cube-green: #009b48;
+  --cube-black: #1a1a1a;
+  --cube-gray: #808080;
+  --hero-gradient-start: #1a1a2e;
+  --hero-gradient-end: #16213e;
+  --font-family-base: "Noto Sans TC", sans-serif;
+  --transition-speed: 0.3s;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-family-base); min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1; }
+
+/* --- Navbar --- */
+.navbar { transition: background-color var(--transition-speed); }
+.navbar-brand { font-weight: 700; font-size: 1.3rem; }
+.navbar-brand .cube-icon { display: inline-block; width: 1.5em; height: 1.5em; margin-right: 0.3em; vertical-align: middle; }
+.theme-toggle { background: none; border: none; padding: 0.25rem 0.5rem; font-size: 1.2rem; cursor: pointer; color: inherit; transition: transform var(--transition-speed); }
+.theme-toggle:hover { transform: scale(1.15); }
+.lang-toggle { font-size: 0.85rem; padding: 0.2rem 0.6rem; }
+
+/* --- Hero --- */
+.hero-section { background: linear-gradient(135deg, var(--hero-gradient-start), var(--hero-gradient-end)); color: #fff; padding: 5rem 0 4rem; position: relative; overflow: hidden; }
+.hero-section h1 { font-weight: 900; font-size: clamp(2rem, 5vw, 3.5rem); }
+.hero-section .lead { font-size: clamp(1rem, 2.5vw, 1.4rem); opacity: 0.9; }
+#hero-cube-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.25; pointer-events: none; }
+
+/* --- Three.js 方塊容器 --- */
+.cube-container { position: relative; width: 100%; aspect-ratio: 1/1; max-width: 500px; margin: 0 auto; border-radius: 0.75rem; overflow: hidden; }
+.cube-container canvas { display: block; width: 100% !important; height: 100% !important; }
+[data-bs-theme="dark"] .cube-container { background-color: #1e1e2e; }
+[data-bs-theme="light"] .cube-container { background-color: #f0f2f5; }
+
+/* --- 步驟演示控制列 --- */
+.cube-controls { display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap; padding: 0.75rem 0; }
+.cube-controls .btn { min-width: 2.5rem; }
+.speed-control { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+.speed-control input[type="range"] { width: 80px; }
+.step-progress { font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+
+/* --- 教學步驟卡片 --- */
+.tutorial-step-card { border-left: 4px solid var(--bs-primary); transition: border-color var(--transition-speed), box-shadow var(--transition-speed); }
+.tutorial-step-card:hover { box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.1); }
+.tutorial-step-card.active { border-left-color: var(--cube-red); }
+
+/* --- 公式標記 --- */
+.move-notation { display: inline-block; font-family: "Fira Code","Consolas",monospace; font-weight: 700; font-size: 1.1rem; background: var(--bs-secondary-bg); padding: 0.15rem 0.5rem; border-radius: 0.3rem; margin: 0.1rem; cursor: pointer; transition: background-color var(--transition-speed), transform 0.15s; user-select: none; }
+.move-notation:hover { background: var(--bs-primary); color: #fff; transform: scale(1.08); }
+
+/* --- 公式卡片 --- */
+.algorithm-card { transition: transform var(--transition-speed), box-shadow var(--transition-speed); }
+.algorithm-card:hover { transform: translateY(-2px); box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.12); }
+.algorithm-card .algo-moves { font-family: "Fira Code","Consolas",monospace; font-size: 1rem; letter-spacing: 0.03em; }
+.algo-filter-btn.active { font-weight: 700; }
+.algo-search { max-width: 400px; }
+
+/* ====== 2D 方塊展開圖 ====== */
+.cube-face-svg { display: inline-block; }
+.cube-face-svg rect.sticker { rx: 2; ry: 2; stroke: #333; stroke-width: 0.8; }
+[data-bs-theme="dark"] .cube-face-svg rect.sticker { stroke: #555; }
+
+/* 方塊展開十字圖 */
+.cube-net { display: inline-grid; grid-template-columns: auto auto auto auto; grid-template-rows: auto auto auto; gap: 2px; justify-items: center; align-items: center; }
+.cube-net .face-placeholder { width: 78px; height: 78px; }
+
+/* 色彩圖例 */
+.color-swatch { display: inline-block; width: 28px; height: 28px; border-radius: 4px; border: 2px solid #333; vertical-align: middle; margin-right: 0.4rem; }
+[data-bs-theme="dark"] .color-swatch { border-color: #666; }
+
+/* 方塊解剖圖 — 零件類型標注 */
+.piece-label { font-size: 0.7rem; font-weight: 700; fill: #fff; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.piece-badge { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 50%; font-weight: 700; font-size: 0.75rem; color: #fff; }
+.piece-badge.center { background: var(--cube-blue); }
+.piece-badge.edge { background: var(--cube-green); }
+.piece-badge.corner { background: var(--cube-red); }
+
+/* ====== 計時器 ====== */
+.timer-display { font-family: "Fira Code","Consolas",monospace; font-size: clamp(3rem,12vw,8rem); font-weight: 700; text-align: center; padding: 1rem; letter-spacing: 0.05em; user-select: none; transition: color var(--transition-speed), background-color var(--transition-speed); border-radius: 1rem; cursor: pointer; }
+.timer-display.ready { color: var(--cube-green); }
+.timer-display.running { color: var(--cube-red); }
+.scramble-display { font-family: "Fira Code","Consolas",monospace; font-size: clamp(1rem,3vw,1.4rem); text-align: center; padding: 1rem; border-radius: 0.5rem; word-spacing: 0.3em; line-height: 1.8; }
+.stats-table th { font-weight: 600; white-space: nowrap; }
+
+/* 計時器狀態視覺指引 */
+.timer-state-guide { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.timer-state-guide .state-step { text-align: center; padding: 0.75rem; border-radius: 0.5rem; background: var(--bs-tertiary-bg); min-width: 100px; position: relative; }
+.timer-state-guide .state-step.active-state { outline: 2px solid var(--bs-primary); outline-offset: 2px; }
+.timer-state-guide .state-step .state-icon { font-size: 1.5rem; display: block; margin-bottom: 0.3rem; }
+.timer-state-guide .state-step .state-label { font-size: 0.75rem; font-weight: 600; }
+.timer-state-guide .state-arrow { display: flex; align-items: center; font-size: 1.2rem; color: var(--bs-secondary); }
+
+/* 解釋卡片 */
+.explain-card { background: var(--bs-tertiary-bg); border-radius: 0.5rem; padding: 1rem; font-size: 0.9rem; }
+
+/* --- FAQ --- */
+.faq-section .accordion-button { font-weight: 600; }
+
+/* --- Footer --- */
+footer { font-size: 0.875rem; }
+footer a { text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* --- 符號說明 --- */
+.notation-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.75rem; }
+.notation-item, .notation-demo-item { text-align: center; padding: 0.75rem; border-radius: 0.5rem; background: var(--bs-tertiary-bg); transition: background-color var(--transition-speed), transform 0.15s, box-shadow 0.15s; cursor: pointer; user-select: none; }
+.notation-item .symbol, .notation-demo-item .symbol { font-family: "Fira Code","Consolas",monospace; font-size: 1.5rem; font-weight: 700; }
+.notation-item .label, .notation-demo-item .label { font-size: 0.8rem; opacity: 0.8; }
+.notation-demo-item:hover { transform: scale(1.05); box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.12); }
+.notation-demo-item.active { background: var(--bs-primary); color: #fff; transform: scale(1.08); }
+.notation-demo-item .mnemonic { font-size: 0.75rem; color: var(--bs-secondary-color); margin-top: 0.25rem; }
+.notation-demo-item.active .mnemonic { color: rgba(255,255,255,0.85); }
+
+/* --- 階段標籤 --- */
+.phase-badge, .phase-badge-sm { display: inline-block; padding: 0.3rem 0.75rem; border-radius: 2rem; font-weight: 700; font-size: 0.85rem; color: #fff; }
+.phase-badge-sm { padding: 0.15rem 0.5rem; font-size: 0.75rem; }
+.phase-1 { background: #fff; color: #333; border: 2px solid #ccc; }
+.phase-2 { background: #009b48; }
+.phase-3 { background: #ffd500; color: #333; }
+.phase-flip { background: linear-gradient(135deg, #fff 50%, #ffd500 50%); color: #333; border: 2px solid #ccc; }
+
+/* --- 階段分隔線 --- */
+.phase-divider { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; margin-bottom: 1rem; border-radius: 0.5rem; background: var(--bs-tertiary-bg); border-left: 4px solid var(--bs-primary); }
+.phase-divider.phase-1 { border-left-color: #aaa; }
+.phase-divider.phase-2 { border-left-color: #009b48; }
+.phase-divider.phase-3 { border-left-color: #ffd500; }
+.phase-divider.phase-flip { border-left-color: #ff5800; background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,213,0,0.1)); }
+.phase-divider .phase-label { font-weight: 900; font-size: 1rem; }
+.phase-divider .phase-desc { font-size: 0.85rem; color: var(--bs-secondary-color); }
+
+/* --- 情境項目 --- */
+.scenario-item { padding: 0.75rem; border-radius: 0.5rem; background: var(--bs-tertiary-bg); }
+
+/* --- 翻轉提示 --- */
+.flip-notice { /* inherits step-content display */ }
+
+/* --- 色塊小圓 --- */
+.color-swatch-sm { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid #666; vertical-align: middle; margin: 0 0.15rem; }
+
+/* --- 階段總覽 --- */
+.phase-overview { padding: 1rem; border-radius: 0.5rem; background: var(--bs-tertiary-bg); }
+
+/* --- 步驟導航列（置頂） --- */
+.step-nav-bar { padding: 1rem; border-radius: 0.5rem; background: var(--bs-tertiary-bg); border: 1px solid var(--bs-border-color); }
+.step-nav-bar .btn.active { font-weight: 700; }
+
+/* --- Before/After 2D 圖示 --- */
+.before-after-diagram { overflow-x: auto; }
+.diagram-pair { display: inline-flex; align-items: center; gap: 0.5rem; }
+.diagram-pair-sm { gap: 0.3rem; }
+.diagram-box { text-align: center; }
+.diagram-label { font-size: 0.7rem; font-weight: 700; color: var(--bs-secondary-color); margin-bottom: 0.2rem; }
+.diagram-caption { font-size: 0.7rem; color: var(--bs-secondary-color); margin-top: 0.2rem; }
+.diagram-arrow { color: var(--bs-secondary-color); font-size: 1.2rem; padding: 0 0.2rem; }
+
+/* 旋轉箭頭在符號 SVG 中 */
+.notation-arrow { stroke: var(--bs-primary); fill: none; stroke-width: 2.5; stroke-linecap: round; }
+.notation-arrow-head { fill: var(--bs-primary); }
+
+/* --- 動畫 --- */
+.fade-in-up { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s ease forwards; }
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+.fade-in-up:nth-child(2) { animation-delay: 0.1s; }
+.fade-in-up:nth-child(3) { animation-delay: 0.2s; }
+.fade-in-up:nth-child(4) { animation-delay: 0.3s; }
+
+/* --- 演示狀態指示 --- */
+.demo-status { text-align: center; min-height: 1.5em; font-size: 0.9rem; font-weight: 600; margin-top: 0.5rem; transition: opacity 0.3s; }
+.demo-status:empty { opacity: 0; }
+
+/* --- 響應式 --- */
+@media (max-width: 767.98px) {
+  .hero-section { padding: 3rem 0 2.5rem; text-align: center; }
+  .cube-container { max-width: 320px; }
+  .cube-controls { gap: 0.3rem; }
+  .timer-state-guide { gap: 0.5rem; }
+  .timer-state-guide .state-step { min-width: 70px; padding: 0.5rem; }
+  .timer-state-guide .state-step .state-icon { font-size: 1.2rem; }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .cube-container { max-width: 400px; }
+}
+
+/* --- 無障礙 --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+}

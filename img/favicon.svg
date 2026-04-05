@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+  <!-- 3x3 魔術方塊正面 favicon -->
+  <rect width="36" height="36" rx="4" fill="#1a1a1a"/>
+  <rect x="2" y="2" width="9.5" height="9.5" rx="1.5" fill="#b71234"/>
+  <rect x="13.25" y="2" width="9.5" height="9.5" rx="1.5" fill="#ff5800"/>
+  <rect x="24.5" y="2" width="9.5" height="9.5" rx="1.5" fill="#0046ad"/>
+  <rect x="2" y="13.25" width="9.5" height="9.5" rx="1.5" fill="#009b48"/>
+  <rect x="13.25" y="13.25" width="9.5" height="9.5" rx="1.5" fill="#ffffff"/>
+  <rect x="24.5" y="13.25" width="9.5" height="9.5" rx="1.5" fill="#ffd500"/>
+  <rect x="2" y="24.5" width="9.5" height="9.5" rx="1.5" fill="#ff5800"/>
+  <rect x="13.25" y="24.5" width="9.5" height="9.5" rx="1.5" fill="#0046ad"/>
+  <rect x="24.5" y="24.5" width="9.5" height="9.5" rx="1.5" fill="#b71234"/>
+</svg>

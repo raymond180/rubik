@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>計時器 — 3×3 魔術方塊速解計時與統計</title>
+  <meta name="description" content="魔術方塊速解計時器，支援 WCA 打亂公式、ao5/ao12 統計、深色模式。初學者友善介面，邊練邊進步。">
+  <meta name="keywords" content="魔術方塊計時器,速解,ao5,ao12,scramble,計時">
+  <link rel="canonical" href="https://rubic.inc.tw/timer.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="魔術方塊計時器">
+  <meta property="og:url" content="https://rubic.inc.tw/timer.html">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <svg class="cube-icon" viewBox="0 0 36 36" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="1" fill="#b71234"/><rect x="13" y="1" width="10" height="10" rx="1" fill="#ff5800"/><rect x="25" y="1" width="10" height="10" rx="1" fill="#0046ad"/><rect x="1" y="13" width="10" height="10" rx="1" fill="#009b48"/><rect x="13" y="13" width="10" height="10" rx="1" fill="#ffffff" stroke="#ccc" stroke-width="0.5"/><rect x="25" y="13" width="10" height="10" rx="1" fill="#ffd500"/><rect x="1" y="25" width="10" height="10" rx="1" fill="#ff5800"/><rect x="13" y="25" width="10" height="10" rx="1" fill="#0046ad"/><rect x="25" y="25" width="10" height="10" rx="1" fill="#b71234"/></svg>
+        <span>魔術方塊教學</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">學習</a>
+            <ul class="dropdown-menu">
+              <li><h6 class="dropdown-header">基礎</h6></li>
+              <li><a class="dropdown-item" href="tutorial.html">符號教學</a></li>
+              <li><a class="dropdown-item" href="solve.html">層先法解題</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><h6 class="dropdown-header">進階</h6></li>
+              <li><a class="dropdown-item" href="algorithms.html">公式速查表</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="timer.html">計時器</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">關於</a></li>
+        </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <button id="theme-toggle-btn" class="theme-toggle" type="button" aria-label="切換深色模式"><i class="bi bi-moon-fill"></i></button>
+          <button id="lang-toggle-btn" class="btn btn-outline-secondary btn-sm lang-toggle" type="button" data-lang-switch="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <header class="text-center mb-4">
+      <h1 class="fw-bold">速解計時器</h1>
+      <p class="lead text-body-secondary">追蹤你的進步，挑戰個人最佳！</p>
+    </header>
+
+    <!-- 給初學者的使用說明 -->
+    <section class="mb-4" id="timer-guide">
+      <div class="card border-info">
+        <div class="card-body">
+          <h2 class="h5 fw-bold text-info mb-3"><i class="bi bi-question-circle me-2"></i>初學者指南：如何使用計時器</h2>
+          <div class="row g-3">
+            <div class="col-md-7">
+              <ol class="mb-2">
+                <li><strong>打亂（Scramble）</strong>：按照上方的打亂公式逐步轉動方塊，讓方塊變成隨機狀態。</li>
+                <li><strong>按住空白鍵</strong>等待計時器變綠。</li>
+                <li><strong>放開空白鍵</strong>開始計時，然後開始還原方塊。</li>
+                <li>還原完成後<strong>再按一次空白鍵</strong>停止計時。</li>
+              </ol>
+              <p class="text-body-secondary small">📱 手機用戶：用手指按住計時器區域代替空白鍵。</p>
+            </div>
+            <div class="col-md-5">
+              <!-- 視覺狀態圖 -->
+              <div class="timer-state-guide">
+                <div class="state-item" data-state="idle">
+                  <span class="state-dot idle"></span>
+                  <span><strong>等待中</strong> — 按住空白鍵</span>
+                </div>
+                <div class="state-arrow">↓</div>
+                <div class="state-item" data-state="holding">
+                  <span class="state-dot holding"></span>
+                  <span><strong>準備中</strong> — 持續按住...</span>
+                </div>
+                <div class="state-arrow">↓</div>
+                <div class="state-item" data-state="ready">
+                  <span class="state-dot ready"></span>
+                  <span><strong>就緒！</strong> — 放開開始計時</span>
+                </div>
+                <div class="state-arrow">↓</div>
+                <div class="state-item" data-state="running">
+                  <span class="state-dot running"></span>
+                  <span><strong>計時中</strong> — 按空白鍵停止</span>
+                </div>
+                <div class="state-arrow">↓</div>
+                <div class="state-item" data-state="stopped">
+                  <span class="state-dot stopped"></span>
+                  <span><strong>完成！</strong> — 成績已記錄</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-outline-info" data-bs-toggle="collapse" data-bs-target="#terms-explain">
+              <i class="bi bi-book me-1"></i>術語說明（ao5、ao12 是什麼？）
+            </button>
+            <div class="collapse mt-2" id="terms-explain">
+              <div class="card card-body small">
+                <ul class="mb-0">
+                  <li><strong>ao5（Average of 5）</strong>：最近 5 次成績中，去掉最好和最差的，取中間 3 次的平均。這是比賽中最常用的指標。</li>
+                  <li><strong>ao12（Average of 12）</strong>：最近 12 次成績中，去掉最好和最差的，取中間 10 次的平均。用來衡量穩定度。</li>
+                  <li><strong>PB（Personal Best）</strong>：個人最佳紀錄。</li>
+                  <li><strong>DNF（Did Not Finish）</strong>：未完成，即沒有成功還原。在比賽中會被視為最差成績。</li>
+                  <li><strong>+2</strong>：在比賽中，如果還原時差一步（差 45° 以內），加罰 2 秒。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 打亂公式 -->
+    <section class="scramble-section text-center mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h6 fw-bold mb-0"><i class="bi bi-shuffle me-1"></i>打亂公式</h2>
+            <button class="btn btn-sm btn-outline-primary" id="new-scramble"><i class="bi bi-arrow-repeat"></i> 換一組</button>
+          </div>
+          <p class="scramble-display fs-5 fw-bold font-monospace" id="scramble-text">R U F' L2 D B' R2 U' F D2 L' B R U2 F' D L2 B' U R2</p>
+          <p class="small text-body-secondary mb-0">依照上面的符號逐步旋轉你的方塊。每個字母 = 那一面順時針轉 90°，加 ' = 逆時針，加 2 = 轉 180°。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 計時器主體 -->
+    <section class="timer-main text-center mb-4" id="timer-area" tabindex="0">
+      <div class="timer-status-indicator mb-2">
+        <span class="state-dot idle" id="timer-state-dot"></span>
+        <span id="timer-state-text">按住空白鍵開始</span>
+      </div>
+      <div class="timer-display" id="timer-display">0.00</div>
+      <p class="small text-body-secondary mt-2">
+        <kbd>Space</kbd> 按住準備 · 放開開始 · 再按停止
+        <span class="d-block d-md-inline ms-md-2">📱 或觸控計時器區域</span>
+      </p>
+    </section>
+
+    <!-- 統計與歷史 -->
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h3 class="h6 fw-bold text-body-secondary">最佳單次</h3>
+            <p class="fs-3 fw-bold text-success" id="stat-best">—</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h3 class="h6 fw-bold text-body-secondary">ao5</h3>
+            <p class="fs-3 fw-bold" id="stat-ao5">—</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h3 class="h6 fw-bold text-body-secondary">ao12</h3>
+            <p class="fs-3 fw-bold" id="stat-ao12">—</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 歷史記錄 -->
+    <section class="mt-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="h5 fw-bold mb-0">歷史記錄</h3>
+        <button class="btn btn-sm btn-outline-danger" id="clear-history"><i class="bi bi-trash3"></i> 清除</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle" id="history-table">
+          <thead>
+            <tr>
+              <th style="width:50px">#</th>
+              <th>時間</th>
+              <th>ao5</th>
+              <th>ao12</th>
+              <th>打亂</th>
+              <th style="width:60px"></th>
+            </tr>
+          </thead>
+          <tbody id="history-body">
+            <tr><td colspan="6" class="text-center text-body-secondary">還沒有記錄，開始計時吧！</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-4 bg-body-tertiary border-top">
+    <div class="container text-center">
+      <p class="mb-1">© 2026 魔術方塊教學</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://rubic.inc.tw/index.html">rubic.inc.tw</a>
+        <a href="https://github.com/raymond180/rubic/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/raymond180/rubic/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/timer.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+{
+  "nav": {
+    "home": "Home",
+    "tutorial": "Tutorial",
+    "algorithms": "Algorithms",
+    "timer": "Timer",
+    "about": "About"
+  },
+  "hero": {
+    "title": "3×3 Rubik's Cube Tutorial",
+    "subtitle": "Learn to solve it in 7 steps!",
+    "cta": "Start Learning",
+    "description": "The most comprehensive beginner-friendly Rubik's Cube tutorial in Traditional Chinese, featuring an interactive 3D model and the Layer-by-Layer method."
+  },
+  "features": {
+    "title": "Features",
+    "tutorial": {
+      "title": "Layer-by-Layer Tutorial",
+      "desc": "Seven steps from the white cross to a complete solve, each with 3D animation."
+    },
+    "algorithms": {
+      "title": "Algorithm Cheat Sheet",
+      "desc": "All commonly used algorithms at a glance — click to watch 3D demos."
+    },
+    "timer": {
+      "title": "Speedsolve Timer",
+      "desc": "WCA-standard scrambles with automatic ao5 & ao12 stats to track your progress."
+    }
+  },
+  "faq": {
+    "title": "FAQ",
+    "q1": {
+      "q": "I've never touched a Rubik's Cube. Can I still learn?",
+      "a": "Absolutely! Our Layer-by-Layer tutorial is designed for complete beginners. We guide you step-by-step with an interactive 3D cube so you can see every move clearly."
+    },
+    "q2": {
+      "q": "How long does it take to learn the LBL method?",
+      "a": "Most people can learn to solve the cube in 1-3 days with regular practice. After that, you can improve your speed over time."
+    },
+    "q3": {
+      "q": "What do R, U, F and other letters mean?",
+      "a": "These are standard Rubik's Cube notations: R (Right), U (Up), F (Front), L (Left), D (Down), B (Back). An apostrophe (') means counterclockwise 90°, and 2 means 180°."
+    },
+    "q4": {
+      "q": "Can I use this site offline?",
+      "a": "Offline support is currently under development and will be available in a future update. Please ensure you have an internet connection for now."
+    },
+    "q5": {
+      "q": "Are the scrambles truly random?",
+      "a": "Yes, our timer uses the WCA (World Cube Association) standard random scramble algorithm."
+    }
+  },
+  "tutorial": {
+    "title": "Layer-by-Layer Tutorial",
+    "subtitle": "Solve a 3×3 Rubik's Cube in 7 Steps",
+    "notation": {
+      "title": "Notation Guide",
+      "desc": "Before we begin, let's learn the rotation notation:"
+    },
+    "step1": {
+      "title": "Step 1: White Cross",
+      "goal": "Goal: Form a cross on the white face, matching edge side colors with center pieces.",
+      "desc": "Hold the cube with the white center on top. Find the four white edge pieces and place them one by one. This step is mainly intuitive — no fixed algorithm.",
+      "tips": "Tip: Locate the white edge piece first, then figure out the shortest path to its target position."
+    },
+    "step2": {
+      "title": "Step 2: White Corners",
+      "goal": "Goal: Complete the entire white face (first layer).",
+      "desc": "Insert the four white corner pieces into the correct positions. Hold the white face on the bottom and use the algorithm below.",
+      "algo": "R U R' U' (repeat 1-5 times until corner is placed)"
+    },
+    "step3": {
+      "title": "Step 3: Middle Layer Edges",
+      "goal": "Goal: Complete the first two layers (F2L).",
+      "desc": "Place the four middle layer edge pieces. Find an edge in the top layer without yellow, align it, and insert.",
+      "algo_right": "U R U' R' U' F' U F (insert edge to the right)",
+      "algo_left": "U' L' U L U F U' F' (insert edge to the left)"
+    },
+    "step4": {
+      "title": "Step 4: Yellow Cross",
+      "goal": "Goal: Form a cross on the yellow face.",
+      "desc": "Only the yellow edges need to face up — side alignment doesn't matter yet. Observe the top face pattern (dot, L-shape, line).",
+      "algo": "F R U R' U' F'"
+    },
+    "step5": {
+      "title": "Step 5: Yellow Face",
+      "goal": "Goal: Make the entire yellow face solid yellow.",
+      "desc": "Orient all yellow corners so they face up. Check the orientation of yellow corners to choose the right starting position.",
+      "algo": "R U R' U R U2 R'"
+    },
+    "step6": {
+      "title": "Step 6: Position Top Corners",
+      "goal": "Goal: Move all top-layer corners to their correct positions (orientation may still be wrong).",
+      "desc": "Find one corner already in the correct position, place it at the front-right, then execute the algorithm.",
+      "algo": "U R U' L' U R' U' L"
+    },
+    "step7": {
+      "title": "Step 7: Position Top Edges",
+      "goal": "Goal: Solve the cube! Move the last edges into the correct positions.",
+      "desc": "Observe which direction the edges need to cycle (clockwise or counterclockwise).",
+      "algo_cw": "R U' R U R U R U' R' U' R2 (clockwise 3-edge cycle)",
+      "algo_ccw": "R2 U R U R' U' R' U' R' U R' (counterclockwise 3-edge cycle)",
+      "congrats": "Congratulations! 🎉 Keep practicing to improve your speed!"
+    },
+    "controls": {
+      "play": "Play",
+      "pause": "Pause",
+      "prev": "Previous",
+      "next": "Next",
+      "reset": "Reset",
+      "speed": "Speed"
+    }
+  },
+  "algorithms": {
+    "title": "Algorithm Cheat Sheet",
+    "subtitle": "Commonly used Rubik's Cube algorithms",
+    "search": "Search algorithms…",
+    "categories": {
+      "all": "All",
+      "pll": "PLL",
+      "oll": "OLL",
+      "f2l": "F2L"
+    },
+    "play_btn": "Demo",
+    "no_results": "No algorithms found"
+  },
+  "timer": {
+    "title": "Speedsolve Timer",
+    "subtitle": "WCA-standard scrambles — track your times",
+    "scramble": "Scramble",
+    "new_scramble": "New Scramble",
+    "instruction": "Press Space or tap the timer to start / stop",
+    "ready": "Ready…",
+    "stats": {
+      "title": "Statistics",
+      "solves": "Solves",
+      "best": "Best",
+      "worst": "Worst",
+      "ao5": "ao5",
+      "ao12": "ao12",
+      "avg": "Average"
+    },
+    "history": {
+      "title": "History",
+      "no": "#",
+      "time": "Time",
+      "scramble": "Scramble",
+      "clear": "Clear History",
+      "empty": "No solves yet"
+    }
+  },
+  "about": {
+    "title": "About",
+    "desc": "This is a 3×3 Rubik's Cube tutorial site built for Traditional Chinese speakers. Our goal is to make solving the Rubik's Cube accessible to everyone.",
+    "features_title": "Features",
+    "features": [
+      "Interactive 3D Rubik's Cube model",
+      "Complete 7-step Layer-by-Layer (LBL) tutorial",
+      "Algorithm cheat sheet with 3D demos",
+      "WCA-standard speedsolving timer",
+      "Dark mode & multi-language support"
+    ],
+    "tech_title": "Tech Stack",
+    "tech": "Built with HTML5, CSS3 (Bootstrap 5.3), and JavaScript (Three.js). Deployed on GitHub Pages. Fully open source.",
+    "contact_title": "Contact",
+    "contact": "For suggestions or bug reports, please open an issue on GitHub.",
+    "license": "Content is licensed under the Apache License 2.0."
+  },
+  "footer": {
+    "copyright": "© 2026 Rubik's Cube Tutorial. Licensed under Apache License 2.0.",
+    "github": "GitHub"
+  },
+  "notation": {
+    "R": "Right clockwise",
+    "R_prime": "Right counterclockwise",
+    "L": "Left clockwise",
+    "L_prime": "Left counterclockwise",
+    "U": "Up clockwise",
+    "U_prime": "Up counterclockwise",
+    "D": "Down clockwise",
+    "D_prime": "Down counterclockwise",
+    "F": "Front clockwise",
+    "F_prime": "Front counterclockwise",
+    "B": "Back clockwise",
+    "B_prime": "Back counterclockwise"
+  }
+}

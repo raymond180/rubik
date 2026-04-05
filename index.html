@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3×3 魔術方塊教學 — 七步學會還原！免費互動 3D 教程</title>
+  <meta name="description" content="最完整的繁體中文 3×3 魔術方塊新手教學。互動 3D 模型、層先法七步驟圖文教學、公式速查表、速解計時器，從零開始輕鬆學會！">
+  <meta name="keywords" content="魔術方塊,3x3,教學,層先法,公式,速解,Rubik's Cube,初學者,解法">
+  <meta name="author" content="Rubik's Cube Tutorial">
+  <link rel="canonical" href="https://rubic.inc.tw/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="3×3 魔術方塊教學 — 七步學會還原！">
+  <meta property="og:description" content="免費互動 3D 魔術方塊教學，層先法七步驟從零開始，搭配速解計時器與公式表。">
+  <meta property="og:image" content="https://rubic.inc.tw/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://rubic.inc.tw/">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="魔術方塊教學">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="3×3 魔術方塊教學 — 七步學會還原！">
+  <meta name="twitter:description" content="免費互動 3D 魔術方塊教學，層先法七步驟從零開始。">
+  <meta name="twitter:image" content="https://rubic.inc.tw/img/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts: Noto Sans TC -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- JSON-LD: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "3×3 魔術方塊教學",
+    "url": "https://rubic.inc.tw/",
+    "description": "最完整的繁體中文 3×3 魔術方塊新手教學網站",
+    "inLanguage": "zh-TW"
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "完全沒碰過魔術方塊，可以學會嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "當然可以！本站的層先法教學專為零基礎設計，一步一步帶你理解每個動作的原因，搭配 3D 互動方塊讓學習更直覺。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "學會層先法大概需要多久？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "依個人的練習頻率而定，大多數人在 1-3 天內就能學會完整還原，之後透過反覆練習可以提升速度。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "什麼是 R、U、F 這些符號？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "這是魔術方塊的國際通用標記法：R（右面）、U（上面）、F（前面）、L（左面）、D（下面）、B（後面）。加上撇號（'）表示逆時針轉 90°，數字 2 表示旋轉 180°。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "計時器的打亂公式是隨機的嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "是的，我們的計時器使用 WCA（世界魔術方塊協會）標準的隨機打亂演算法產生公式。"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ========== Navbar ========== -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <svg class="cube-icon" viewBox="0 0 36 36" aria-hidden="true">
+          <rect x="1" y="1" width="10" height="10" rx="1" fill="#b71234"/>
+          <rect x="13" y="1" width="10" height="10" rx="1" fill="#ff5800"/>
+          <rect x="25" y="1" width="10" height="10" rx="1" fill="#0046ad"/>
+          <rect x="1" y="13" width="10" height="10" rx="1" fill="#009b48"/>
+          <rect x="13" y="13" width="10" height="10" rx="1" fill="#ffffff" stroke="#ccc" stroke-width="0.5"/>
+          <rect x="25" y="13" width="10" height="10" rx="1" fill="#ffd500"/>
+          <rect x="1" y="25" width="10" height="10" rx="1" fill="#ff5800"/>
+          <rect x="13" y="25" width="10" height="10" rx="1" fill="#0046ad"/>
+          <rect x="25" y="25" width="10" height="10" rx="1" fill="#b71234"/>
+        </svg>
+        <span data-i18n="hero.title">魔術方塊教學</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="切換導航列">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html" data-i18n="nav.home">首頁</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">學習</a>
+            <ul class="dropdown-menu">
+              <li><h6 class="dropdown-header">基礎</h6></li>
+              <li><a class="dropdown-item" href="tutorial.html">符號教學</a></li>
+              <li><a class="dropdown-item" href="solve.html">層先法解題</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><h6 class="dropdown-header">進階</h6></li>
+              <li><a class="dropdown-item" href="algorithms.html">公式速查表</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="timer.html" data-i18n="nav.timer">計時器</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html" data-i18n="nav.about">關於</a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <button id="theme-toggle-btn" class="theme-toggle" type="button" aria-label="切換深色模式">
+            <i class="bi bi-moon-fill"></i>
+          </button>
+          <button id="lang-toggle-btn" class="btn btn-outline-secondary btn-sm lang-toggle" type="button" data-lang-switch="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ========== Hero ========== -->
+    <section class="hero-section" aria-label="主視覺區塊">
+      <div id="hero-cube-canvas"></div>
+      <div class="container position-relative">
+        <div class="row align-items-center min-vh-50">
+          <div class="col-lg-7">
+            <h1 class="display-4 fw-bold mb-3 fade-in-up" data-i18n="hero.title">3×3 魔術方塊教學</h1>
+            <p class="lead mb-4 fade-in-up" data-i18n="hero.subtitle">從零開始，七步學會！</p>
+            <p class="mb-4 fade-in-up" data-i18n="hero.description">最完整的繁體中文魔術方塊新手教學，搭配互動 3D 模型，輕鬆掌握層先法。</p>
+            <a href="tutorial.html" class="btn btn-warning btn-lg fw-bold fade-in-up" data-i18n="hero.cta">開始學習</a>
+          </div>
+          <div class="col-lg-5 d-none d-lg-block">
+            <div class="cube-container" id="hero-cube-interactive" style="aspect-ratio:1/1; max-width:360px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== Features ========== -->
+    <section class="py-5" id="features">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-5 fade-in-up" data-i18n="features.title">網站功能</h2>
+        <div class="row g-4">
+          <div class="col-md-4 fade-in-up">
+            <div class="card h-100 border-0 shadow-sm text-center p-4">
+              <div class="mb-3"><i class="bi bi-book-half fs-1 text-primary"></i></div>
+              <h3 class="h5 fw-bold" data-i18n="features.tutorial.title">層先法教學</h3>
+              <p class="text-body-secondary" data-i18n="features.tutorial.desc">七個步驟，從白色十字到完整還原，每步搭配 3D 動畫演示。</p>
+              <a href="tutorial.html" class="btn btn-outline-primary mt-auto" data-i18n="hero.cta">開始學習</a>
+            </div>
+          </div>
+          <div class="col-md-4 fade-in-up">
+            <div class="card h-100 border-0 shadow-sm text-center p-4">
+              <div class="mb-3"><i class="bi bi-grid-3x3 fs-1 text-success"></i></div>
+              <h3 class="h5 fw-bold" data-i18n="features.algorithms.title">公式速查表</h3>
+              <p class="text-body-secondary" data-i18n="features.algorithms.desc">所有常用公式一目瞭然，點擊即可在 3D 方塊上演示。</p>
+              <a href="algorithms.html" class="btn btn-outline-success mt-auto">查看公式</a>
+            </div>
+          </div>
+          <div class="col-md-4 fade-in-up">
+            <div class="card h-100 border-0 shadow-sm text-center p-4">
+              <div class="mb-3"><i class="bi bi-stopwatch fs-1 text-danger"></i></div>
+              <h3 class="h5 fw-bold" data-i18n="features.timer.title">速解計時器</h3>
+              <p class="text-body-secondary" data-i18n="features.timer.desc">WCA 標準打亂公式，自動統計 ao5、ao12，追蹤你的進步。</p>
+              <a href="timer.html" class="btn btn-outline-danger mt-auto">開始計時</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="py-5 bg-body-secondary faq-section" id="faq">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-5" data-i18n="faq.title">常見問題</h2>
+        <div class="accordion mx-auto" style="max-width:800px" id="faq-accordion">
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1" data-i18n="faq.q1.q">
+                完全沒碰過魔術方塊，可以學會嗎？
+              </button>
+            </h3>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faq-accordion">
+              <div class="accordion-body" data-i18n="faq.q1.a">
+                當然可以！本站的層先法教學專為零基礎設計，一步一步帶你理解每個動作的原因，搭配 3D 互動方塊讓學習更直覺。
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2" data-i18n="faq.q2.q">
+                學會層先法大概需要多久？
+              </button>
+            </h3>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faq-accordion">
+              <div class="accordion-body" data-i18n="faq.q2.a">
+                依個人的練習頻率而定，大多數人在 1-3 天內就能學會完整還原，之後透過反覆練習可以提升速度。
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3" data-i18n="faq.q3.q">
+                什麼是 R、U、F 這些符號？
+              </button>
+            </h3>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faq-accordion">
+              <div class="accordion-body" data-i18n="faq.q3.a">
+                這是魔術方塊的國際通用標記法：R（右面）、U（上面）、F（前面）、L（左面）、D（下面）、B（後面）。加上撇號（'）表示逆時針轉 90°，數字 2 表示旋轉 180°。
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4" data-i18n="faq.q5.q">
+                計時器的打亂公式是隨機的嗎？
+              </button>
+            </h3>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faq-accordion">
+              <div class="accordion-body" data-i18n="faq.q5.a">
+                是的，我們的計時器使用 WCA（世界魔術方塊協會）標準的隨機打亂演算法產生公式。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== Footer ========== -->
+  <footer class="py-4 bg-body-tertiary border-top">
+    <div class="container text-center">
+      <p class="mb-1">© 2026 魔術方塊教學</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://rubic.inc.tw/index.html">rubic.inc.tw</a>
+        <a href="https://github.com/raymond180/rubic/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/raymond180/rubic/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== Scripts ========== -->
+  <!-- Bootstrap 5.3 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <!-- Three.js (global build r150) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <!-- Custom JS -->
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/cube.js"></script>
+  <script>
+    // 首頁互動 3D 方塊
+    document.addEventListener("DOMContentLoaded", function () {
+      var heroContainer = document.getElementById("hero-cube-interactive");
+      if (heroContainer && heroContainer.clientWidth > 0) {
+        var isDark = document.documentElement.getAttribute("data-bs-theme") === "dark";
+        var cube = new RubiksCube(heroContainer, {
+          interactive: true,
+          bgColor: null,
+        });
+
+        // 自動隨機旋轉展示
+        var moves = ["R", "U", "F'", "L", "D'", "B", "R'", "U2", "F", "L'"];
+        var idx = 0;
+        function autoRotate() {
+          if (idx >= moves.length) idx = 0;
+          cube.rotate(moves[idx]);
+          idx++;
+          setTimeout(autoRotate, 1500);
+        }
+        setTimeout(autoRotate, 1000);
+      }
+
+      // Hero 背景 canvas（裝飾用低透明度方塊）
+      var heroBg = document.getElementById("hero-cube-canvas");
+      if (heroBg && window.innerWidth >= 768) {
+        var bgCube = new RubiksCube(heroBg, {
+          interactive: false,
+          bgColor: null,
+        });
+        var bgMoves = ["R", "U'", "F", "D", "L'", "B2"];
+        var bgIdx = 0;
+        function bgAutoRotate() {
+          if (bgIdx >= bgMoves.length) bgIdx = 0;
+          bgCube.rotate(bgMoves[bgIdx]);
+          bgIdx++;
+          setTimeout(bgAutoRotate, 2000);
+        }
+        setTimeout(bgAutoRotate, 500);
+      }
+    });
+  </script>
+</body>
+</html>

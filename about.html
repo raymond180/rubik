@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>關於 — 3×3 魔術方塊教學網站</title>
+  <meta name="description" content="關於本站：一個專為繁體中文使用者打造的 3×3 魔術方塊教學網站，使用 Three.js 互動 3D 模型，完全開源。">
+  <meta name="keywords" content="關於,魔術方塊教學,開源,Three.js,Bootstrap">
+  <link rel="canonical" href="https://rubic.inc.tw/about.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="關於 — 3×3 魔術方塊教學網站">
+  <meta property="og:description" content="專為繁體中文使用者打造的互動式魔術方塊教學。">
+  <meta property="og:image" content="https://rubic.inc.tw/img/og-image.png">
+  <meta property="og:url" content="https://rubic.inc.tw/about.html">
+  <meta property="og:locale" content="zh_TW">
+
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://rubic.inc.tw/"},
+      {"@type": "ListItem", "position": 2, "name": "關於", "item": "https://rubic.inc.tw/about.html"}
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <svg class="cube-icon" viewBox="0 0 36 36" aria-hidden="true">
+          <rect x="1" y="1" width="10" height="10" rx="1" fill="#b71234"/>
+          <rect x="13" y="1" width="10" height="10" rx="1" fill="#ff5800"/>
+          <rect x="25" y="1" width="10" height="10" rx="1" fill="#0046ad"/>
+          <rect x="1" y="13" width="10" height="10" rx="1" fill="#009b48"/>
+          <rect x="13" y="13" width="10" height="10" rx="1" fill="#ffffff" stroke="#ccc" stroke-width="0.5"/>
+          <rect x="25" y="13" width="10" height="10" rx="1" fill="#ffd500"/>
+          <rect x="1" y="25" width="10" height="10" rx="1" fill="#ff5800"/>
+          <rect x="13" y="25" width="10" height="10" rx="1" fill="#0046ad"/>
+          <rect x="25" y="25" width="10" height="10" rx="1" fill="#b71234"/>
+        </svg>
+        <span>魔術方塊教學</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="切換導航列">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">首頁</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">學習</a>
+            <ul class="dropdown-menu">
+              <li><h6 class="dropdown-header">基礎</h6></li>
+              <li><a class="dropdown-item" href="tutorial.html">符號教學</a></li>
+              <li><a class="dropdown-item" href="solve.html">層先法解題</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><h6 class="dropdown-header">進階</h6></li>
+              <li><a class="dropdown-item" href="algorithms.html">公式速查表</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="timer.html" data-i18n="nav.timer">計時器</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="about.html" data-i18n="nav.about">關於</a></li>
+        </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <button id="theme-toggle-btn" class="theme-toggle" type="button" aria-label="切換深色模式"><i class="bi bi-moon-fill"></i></button>
+          <button id="lang-toggle-btn" class="btn btn-outline-secondary btn-sm lang-toggle" type="button" data-lang-switch="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="container mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html" data-i18n="nav.home">首頁</a></li>
+      <li class="breadcrumb-item active" aria-current="page" data-i18n="nav.about">關於</li>
+    </ol>
+  </nav>
+
+  <main class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h1 class="fw-bold mb-4" data-i18n="about.title">關於本站</h1>
+
+        <section class="mb-5">
+          <p class="lead" data-i18n="about.desc">
+            這是一個專為繁體中文使用者打造的 3×3 魔術方塊教學網站。我們的目標是讓每個人都能輕鬆學會還原魔術方塊。
+          </p>
+        </section>
+
+        <section class="mb-5">
+          <h2 class="h4 fw-bold" data-i18n="about.features_title">特色功能</h2>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="bi bi-box text-primary me-2"></i>互動式 3D 魔術方塊模型</li>
+            <li class="list-group-item"><i class="bi bi-book text-primary me-2"></i>層先法（LBL）完整七步驟教學</li>
+            <li class="list-group-item"><i class="bi bi-grid-3x3 text-primary me-2"></i>公式速查表，支援 3D 演示</li>
+            <li class="list-group-item"><i class="bi bi-stopwatch text-primary me-2"></i>WCA 標準速解計時器</li>
+            <li class="list-group-item"><i class="bi bi-moon-stars text-primary me-2"></i>深色模式與多語言支援</li>
+          </ul>
+        </section>
+
+        <section class="mb-5">
+          <h2 class="h4 fw-bold" data-i18n="about.tech_title">技術架構</h2>
+          <p data-i18n="about.tech">
+            本站使用 HTML5、CSS3（Bootstrap 5.3）、JavaScript（Three.js）開發，部署於 GitHub Pages，完全開源。
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge bg-secondary fs-6">HTML5</span>
+            <span class="badge bg-secondary fs-6">CSS3</span>
+            <span class="badge bg-primary fs-6">Bootstrap 5.3</span>
+            <span class="badge bg-success fs-6">Three.js</span>
+            <span class="badge bg-dark fs-6">GitHub Pages</span>
+          </div>
+        </section>
+
+        <section class="mb-5">
+          <h2 class="h4 fw-bold" data-i18n="about.contact_title">聯絡我們</h2>
+          <p data-i18n="about.contact">如有建議或問題，歡迎透過 GitHub Issues 反映。</p>
+          <a href="https://github.com/raymond180/rubic/" class="btn btn-outline-dark" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-github me-1"></i> GitHub Repository
+          </a>
+          <a href="https://github.com/raymond180/rubic/issues" class="btn btn-outline-secondary ms-2" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-exclamation-circle me-1"></i> Issues
+          </a>
+        </section>
+
+        <section>
+          <h2 class="h4 fw-bold">授權</h2>
+          <p data-i18n="about.license">本站內容以 Apache License 2.0 授權釋出。詳見 <a href="https://github.com/raymond180/rubic/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">LICENSE</a>。</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-body-tertiary border-top">
+    <div class="container text-center">
+      <p class="mb-1">© 2026 魔術方塊教學</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://rubic.inc.tw/index.html">rubic.inc.tw</a>
+        <a href="https://github.com/raymond180/rubic/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/raymond180/rubic/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
+</body>
+</html>

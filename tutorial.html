@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>層先法教學 — 3×3 魔術方塊七步驟完整圖文教程</title>
+  <meta name="description" content="層先法（LBL）完整七步驟 3×3 魔術方塊教學。互動 3D 模型 + 2D 示意圖即時演示，從白色十字到完整還原，零基礎也能輕鬆學會。">
+  <meta name="keywords" content="魔術方塊教學,層先法,LBL,3x3解法,白色十字,F2L,OLL,PLL,初學者">
+  <link rel="canonical" href="https://rubic.inc.tw/tutorial.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="層先法教學 — 3×3 魔術方塊七步驟完整教程">
+  <meta property="og:description" content="互動 3D 模型 + 2D 示意圖，從白色十字到完整還原。">
+  <meta property="og:image" content="https://rubic.inc.tw/img/og-image.png">
+  <meta property="og:url" content="https://rubic.inc.tw/tutorial.html">
+  <meta property="og:locale" content="zh_TW">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- JSON-LD: HowTo -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"HowTo","name":"如何還原 3×3 魔術方塊（層先法）","description":"使用層先法七個步驟，從零開始還原 3×3 魔術方塊。","totalTime":"PT30M","inLanguage":"zh-TW","step":[
+    {"@type":"HowToStep","name":"白色十字","text":"在白色面上拼出十字，且邊塊側面顏色與中心塊一致。","position":1},
+    {"@type":"HowToStep","name":"白色角塊","text":"將四個白色角塊插入正確位置，完成第一層。","position":2},
+    {"@type":"HowToStep","name":"中層邊塊","text":"完成中間層的四個邊塊。","position":3},
+    {"@type":"HowToStep","name":"黃色十字","text":"在黃色面上拼出十字。","position":4},
+    {"@type":"HowToStep","name":"黃色面完成","text":"讓黃色面所有格都朝上。","position":5},
+    {"@type":"HowToStep","name":"頂層角塊歸位","text":"將頂層角塊移到正確位置。","position":6},
+    {"@type":"HowToStep","name":"頂層邊塊歸位","text":"完成最後的邊塊歸位。","position":7}
+  ]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"首頁","item":"https://rubic.inc.tw/"},
+    {"@type":"ListItem","position":2,"name":"層先法教學","item":"https://rubic.inc.tw/tutorial.html"}
+  ]}
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <svg class="cube-icon" viewBox="0 0 36 36" aria-hidden="true"><rect x="1" y="1" width="10" height="10" rx="1" fill="#b71234"/><rect x="13" y="1" width="10" height="10" rx="1" fill="#ff5800"/><rect x="25" y="1" width="10" height="10" rx="1" fill="#0046ad"/><rect x="1" y="13" width="10" height="10" rx="1" fill="#009b48"/><rect x="13" y="13" width="10" height="10" rx="1" fill="#ffffff" stroke="#ccc" stroke-width="0.5"/><rect x="25" y="13" width="10" height="10" rx="1" fill="#ffd500"/><rect x="1" y="25" width="10" height="10" rx="1" fill="#ff5800"/><rect x="13" y="25" width="10" height="10" rx="1" fill="#0046ad"/><rect x="25" y="25" width="10" height="10" rx="1" fill="#b71234"/></svg>
+        <span>魔術方塊教學</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">首頁</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">學習</a>
+            <ul class="dropdown-menu">
+              <li><h6 class="dropdown-header">基礎</h6></li>
+              <li><a class="dropdown-item active" href="tutorial.html">符號教學</a></li>
+              <li><a class="dropdown-item" href="solve.html">層先法解題</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><h6 class="dropdown-header">進階</h6></li>
+              <li><a class="dropdown-item" href="algorithms.html">公式速查表</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="timer.html">計時器</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">關於</a></li>
+        </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <button id="theme-toggle-btn" class="theme-toggle" type="button" aria-label="切換深色模式"><i class="bi bi-moon-fill"></i></button>
+          <button id="lang-toggle-btn" class="btn btn-outline-secondary btn-sm lang-toggle" type="button" data-lang-switch="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav aria-label="breadcrumb" class="container mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">首頁</a></li>
+      <li class="breadcrumb-item active" aria-current="page">教學</li>
+    </ol>
+  </nav>
+
+  <main class="container py-4">
+    <header class="text-center mb-4">
+      <h1 class="fw-bold">層先法教學</h1>
+      <p class="lead text-body-secondary">七步完整還原 3×3 魔術方塊</p>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- 初學者入門：認識你的魔術方塊 -->
+    <!-- ============================================================ -->
+    <section class="mb-5" id="cube-basics">
+      <div class="card border-primary">
+        <div class="card-body">
+          <h2 class="h4 fw-bold text-primary mb-3"><i class="bi bi-info-circle me-2"></i>認識你的魔術方塊</h2>
+          <p>在開始學習解法之前，我們需要先了解魔術方塊的基本構造。<strong>理解結構比死背公式更重要！</strong></p>
+
+          <!-- 三種零件 -->
+          <h3 class="h5 fw-bold mt-4 mb-3">🧩 三種零件</h3>
+          <p>3×3 魔術方塊由三種零件組成，它們的行為完全不同：</p>
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="card h-100 text-center">
+                <div class="card-body">
+                  <span class="piece-badge center mb-2">C</span>
+                  <h4 class="h6 fw-bold">中心塊 ×6</h4>
+                  <p class="small mb-2">每面正中央的方塊。<strong>中心塊永遠不會移動！</strong>它決定了這一面的顏色。</p>
+                  <!-- 2D 示意：單面，中心高亮 -->
+                  <svg class="cube-face-svg" viewBox="0 0 78 78" width="78" height="78">
+                    <rect class="sticker" x="3" y="3" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="28" y="3" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="53" y="3" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="3" y="28" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="28" y="28" width="22" height="22" fill="#0046ad" stroke="#fff" stroke-width="2"/>
+                    <rect class="sticker" x="53" y="28" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="3" y="53" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="28" y="53" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="53" y="53" width="22" height="22" fill="#ddd"/>
+                    <text x="39" y="42" text-anchor="middle" font-size="11" font-weight="bold" fill="#fff">C</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 text-center">
+                <div class="card-body">
+                  <span class="piece-badge edge mb-2">E</span>
+                  <h4 class="h6 fw-bold">邊塊 ×12</h4>
+                  <p class="small mb-2">有 <strong>2 個顏色</strong>的方塊，位於兩面的交界處。</p>
+                  <svg class="cube-face-svg" viewBox="0 0 78 78" width="78" height="78">
+                    <rect class="sticker" x="3" y="3" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="28" y="3" width="22" height="22" fill="#009b48" stroke="#fff" stroke-width="2"/>
+                    <rect class="sticker" x="53" y="3" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="3" y="28" width="22" height="22" fill="#009b48" stroke="#fff" stroke-width="2"/>
+                    <rect class="sticker" x="28" y="28" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="53" y="28" width="22" height="22" fill="#009b48" stroke="#fff" stroke-width="2"/>
+                    <rect class="sticker" x="3" y="53" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="28" y="53" width="22" height="22" fill="#009b48" stroke="#fff" stroke-width="2"/>
+                    <rect class="sticker" x="53" y="53" width="22" height="22" fill="#ddd"/>
+                    <text x="39" y="17" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">E</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card h-100 text-center">
+                <div class="card-body">
+                  <span class="piece-badge corner mb-2">角</span>
+                  <h4 class="h6 fw-bold">角塊 ×8</h4>
+                  <p class="small mb-2">有 <strong>3 個顏色</strong>的方塊，位於三面的交會點。</p>
+                  <svg class="cube-face-svg" viewBox="0 0 78 78" width="78" height="78">
+                    <rect class="sticker" x="3" y="3" width="22" height="22" fill="#b71234" stroke="#fff" stroke-width="2"/>
+                    <rect class="sticker" x="28" y="3" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="53" y="3" width="22" height="22" fill="#b71234" stroke="#fff" stroke-width="2"/>
+                    <rect class="sticker" x="3" y="28" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="28" y="28" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="53" y="28" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="3" y="53" width="22" height="22" fill="#b71234" stroke="#fff" stroke-width="2"/>
+                    <rect class="sticker" x="28" y="53" width="22" height="22" fill="#ddd"/>
+                    <rect class="sticker" x="53" y="53" width="22" height="22" fill="#b71234" stroke="#fff" stroke-width="2"/>
+                    <text x="14" y="17" text-anchor="middle" font-size="9" font-weight="bold" fill="#fff">角</text>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning">
+            <i class="bi bi-lightbulb me-1"></i>
+            <strong>核心觀念：</strong>中心塊永遠不動！白色中心永遠在白色那面。所以解魔術方塊 = 把邊塊和角塊移到正確的位置。
+          </div>
+
+          <!-- WCA 世界標準配色 -->
+          <h3 class="h5 fw-bold mt-4 mb-3">🎨 WCA 世界標準配色</h3>
+          <p>全世界的魔術方塊比賽都使用同一套標準配色。<strong>相對面的顏色</strong>是固定的：</p>
+          <div class="row g-3 mb-3">
+            <div class="col-auto">
+              <div class="d-flex align-items-center mb-2">
+                <span class="color-swatch" style="background:#ffffff"></span>
+                <strong>白色（U 上面）</strong>
+                <span class="mx-2">↔</span>
+                <span class="color-swatch" style="background:#ffd500"></span>
+                <strong>黃色（D 下面）</strong>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <span class="color-swatch" style="background:#b71234"></span>
+                <strong>紅色（R 右面）</strong>
+                <span class="mx-2">↔</span>
+                <span class="color-swatch" style="background:#ff5800"></span>
+                <strong>橙色（L 左面）</strong>
+              </div>
+              <div class="d-flex align-items-center mb-2">
+                <span class="color-swatch" style="background:#009b48"></span>
+                <strong>綠色（F 前面）</strong>
+                <span class="mx-2">↔</span>
+                <span class="color-swatch" style="background:#0046ad"></span>
+                <strong>藍色（B 後面）</strong>
+              </div>
+            </div>
+            <div class="col-auto">
+              <!-- 展開圖 (十字型) -->
+              <div class="cube-net">
+                <div class="face-placeholder"></div>
+                <!-- U 面 (白) -->
+                <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#fff" stroke="#aaa"/><text x="39" y="42" text-anchor="middle" font-size="10" font-weight="bold" fill="#999">U</text></svg>
+                <div class="face-placeholder"></div>
+                <div class="face-placeholder"></div>
+                <!-- L 面 (橙) -->
+                <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ff5800" stroke="#333"/><text x="39" y="42" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">L</text></svg>
+                <!-- F 面 (綠) -->
+                <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#009b48" stroke="#333"/><text x="39" y="42" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">F</text></svg>
+                <!-- R 面 (紅) -->
+                <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#b71234" stroke="#333"/><text x="39" y="42" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">R</text></svg>
+                <!-- B 面 (藍) -->
+                <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#0046ad" stroke="#333"/><text x="39" y="42" text-anchor="middle" font-size="10" font-weight="bold" fill="#fff">B</text></svg>
+                <div class="face-placeholder"></div>
+                <!-- D 面 (黃) -->
+                <svg viewBox="0 0 78 78" width="78" height="78"><rect x="3" y="3" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="3" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="3" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="3" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="28" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="3" y="53" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="28" y="53" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><rect x="53" y="53" width="22" height="22" rx="2" fill="#ffd500" stroke="#333"/><text x="39" y="42" text-anchor="middle" font-size="10" font-weight="bold" fill="#333">D</text></svg>
+                <div class="face-placeholder"></div>
+                <div class="face-placeholder"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 符號說明 -->
+          <h3 class="h5 fw-bold mt-4 mb-3">📐 旋轉符號說明</h3>
+          <p>魔術方塊使用國際通用的符號來記錄每一步操作。<strong>每個字母代表一個面，表示「從這個面的正面看，順時針轉 90°」。</strong></p>
+          <p class="text-body-secondary"><i class="bi bi-hand-index me-1"></i>點擊下方任一符號，右側 3D 方塊會即時演示旋轉動畫！</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 互動旋轉符號說明 -->
+    <!-- ============================================================ -->
+    <section class="mb-5" id="notation-demo">
+      <div class="row g-4">
+        <!-- 左欄：符號表格 -->
+        <div class="col-lg-7">
+          <h2 class="h4 fw-bold mb-3"><i class="bi bi-joystick me-2"></i>互動旋轉符號</h2>
+
+          <!-- 基本六面 -->
+          <h3 class="h6 fw-bold text-primary mt-3 mb-2">基本旋轉（順時針 90°）</h3>
+          <div class="notation-grid mb-3">
+            <div class="notation-demo-item" data-move="R"><span class="symbol">R</span><br><span class="label">右面 ↻</span><br><span class="mnemonic">口訣：<strong>上 ↑</strong></span></div>
+            <div class="notation-demo-item" data-move="U"><span class="symbol">U</span><br><span class="label">上面 ↻</span><br><span class="mnemonic">口訣：<strong>右 →</strong></span></div>
+            <div class="notation-demo-item" data-move="F"><span class="symbol">F</span><br><span class="label">前面 ↻</span><br><span class="mnemonic">口訣：<strong>順 ⟳</strong></span></div>
+            <div class="notation-demo-item" data-move="L"><span class="symbol">L</span><br><span class="label">左面 ↻</span><br><span class="mnemonic">口訣：<strong>推 ↓</strong></span></div>
+            <div class="notation-demo-item" data-move="D"><span class="symbol">D</span><br><span class="label">下面 ↻</span><br><span class="mnemonic">口訣：<strong>底 →</strong></span></div>
+            <div class="notation-demo-item" data-move="B"><span class="symbol">B</span><br><span class="label">後面 ↻</span><br><span class="mnemonic">口訣：<strong>後 ↻</strong></span></div>
+          </div>
+
+          <h3 class="h6 fw-bold text-primary mt-3 mb-2">逆時針 90°（加撇號 '）</h3>
+          <div class="notation-grid mb-3">
+            <div class="notation-demo-item" data-move="R'"><span class="symbol">R'</span><br><span class="label">右面 ↺</span><br><span class="mnemonic">口訣：<strong>下 ↓</strong></span></div>
+            <div class="notation-demo-item" data-move="U'"><span class="symbol">U'</span><br><span class="label">上面 ↺</span><br><span class="mnemonic">口訣：<strong>左 ←</strong></span></div>
+            <div class="notation-demo-item" data-move="F'"><span class="symbol">F'</span><br><span class="label">前面 ↺</span><br><span class="mnemonic">口訣：<strong>逆 ⟲</strong></span></div>
+            <div class="notation-demo-item" data-move="L'"><span class="symbol">L'</span><br><span class="label">左面 ↺</span><br><span class="mnemonic">口訣：<strong>拉 ↑</strong></span></div>
+            <div class="notation-demo-item" data-move="D'"><span class="symbol">D'</span><br><span class="label">下面 ↺</span><br><span class="mnemonic">口訣：<strong>底逆 ←</strong></span></div>
+            <div class="notation-demo-item" data-move="B'"><span class="symbol">B'</span><br><span class="label">後面 ↺</span><br><span class="mnemonic">口訣：<strong>後逆 ↺</strong></span></div>
+          </div>
+
+          <h3 class="h6 fw-bold text-primary mt-3 mb-2">180° 旋轉（加數字 2）</h3>
+          <div class="notation-grid mb-4">
+            <div class="notation-demo-item" data-move="R2"><span class="symbol">R2</span><br><span class="label">右面 ×2</span><br><span class="mnemonic"><strong>上上</strong></span></div>
+            <div class="notation-demo-item" data-move="U2"><span class="symbol">U2</span><br><span class="label">上面 ×2</span><br><span class="mnemonic"><strong>右右</strong></span></div>
+            <div class="notation-demo-item" data-move="F2"><span class="symbol">F2</span><br><span class="label">前面 ×2</span><br><span class="mnemonic"><strong>順順</strong></span></div>
+            <div class="notation-demo-item" data-move="L2"><span class="symbol">L2</span><br><span class="label">左面 ×2</span><br><span class="mnemonic"><strong>推推</strong></span></div>
+            <div class="notation-demo-item" data-move="D2"><span class="symbol">D2</span><br><span class="label">下面 ×2</span><br><span class="mnemonic"><strong>底底</strong></span></div>
+            <div class="notation-demo-item" data-move="B2"><span class="symbol">B2</span><br><span class="label">後面 ×2</span><br><span class="mnemonic"><strong>後後</strong></span></div>
+          </div>
+
+          <div class="explain-card">
+            <strong>↻</strong> = 順時針 90°（從該面方向看）&nbsp;&nbsp;
+            <strong>↺</strong> = 逆時針 90°（加撇號 '）&nbsp;&nbsp;
+            <strong>2</strong> = 轉 180°（連轉兩次）<br>
+            <strong>口訣系統：</strong>以綠色面為正面、白色面為上面。R=上↑（右手推上去）、U=右→（頂面往右轉）、F=順⟳（前面順轉）
+          </div>
+        </div>
+
+        <!-- 右欄：3D 方塊 -->
+        <div class="col-lg-5">
+          <div class="sticky-lg-top" style="top:5rem">
+            <div class="cube-container" id="tutorial-cube"></div>
+            <div class="cube-controls mt-3">
+              <button class="btn btn-outline-secondary" id="ctrl-reset"><i class="bi bi-arrow-counterclockwise"></i> 重置</button>
+              <div class="speed-control">
+                <label for="speed-range">速度</label>
+                <input type="range" id="speed-range" class="form-range" min="0.5" max="3" step="0.5" value="0.8">
+                <span id="speed-label">0.8x</span>
+              </div>
+            </div>
+            <div class="demo-status" id="demo-status"></div>
+            <p class="text-center small text-body-secondary mt-2"><i class="bi bi-hand-index"></i> 點擊左側符號即看動畫 ｜ 拖曳方塊旋轉視角</p>
+
+            <!-- 試試看組合 -->
+            <div class="card mt-3">
+              <div class="card-body">
+                <h3 class="h6 fw-bold mb-2"><i class="bi bi-lightning me-1"></i>試試看組合</h3>
+                <p class="small text-body-secondary mb-2">點擊下方公式名稱，看看連續旋轉的效果：</p>
+                <div class="d-flex flex-wrap gap-2">
+                  <button class="btn btn-sm btn-outline-primary" data-play-demo="R U R' U'">上右下左 (Sexy Move)</button>
+                  <button class="btn btn-sm btn-outline-primary" data-play-demo="F R U R' U' F'">順上右下左逆 (十字公式)</button>
+                  <button class="btn btn-sm btn-outline-primary" data-play-demo="R U R' U R U2 R'">Sune</button>
+                  <button class="btn btn-sm btn-outline-primary" data-play-demo="R U2 R' U' R U' R'">Anti-Sune</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- CTA: 前往解題頁面 -->
+    <!-- ============================================================ -->
+    <section class="text-center mb-5">
+      <div class="card border-success bg-success-subtle">
+        <div class="card-body py-5">
+          <h2 class="h3 fw-bold mb-3"><i class="bi bi-puzzle me-2"></i>準備好了嗎？開始解題！</h2>
+          <p class="lead mb-4">學會了基本符號，就可以開始一步一步還原魔術方塊。<br>我們將帶你從<strong>白色面</strong>開始，一層一層完成！</p>
+          <a href="solve.html" class="btn btn-success btn-lg px-5"><i class="bi bi-book me-2"></i>完整解題教學</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-4 bg-body-tertiary border-top">
+    <div class="container text-center">
+      <p class="mb-1">© 2026 魔術方塊教學</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://rubic.inc.tw/index.html">rubic.inc.tw</a>
+        <a href="https://github.com/raymond180/rubic/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/raymond180/rubic/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/cube.js"></script>
+  <script src="js/tutorial.js" defer></script>
+</body>
+</html>

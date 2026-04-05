@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-bs-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>公式速查表 — 魔術方塊 PLL / OLL / F2L 公式整理</title>
+  <meta name="description" content="魔術方塊公式速查表：PLL、OLL、F2L 常用公式整理，點擊即可在 3D 模型上演示。適合初學者到進階玩家。">
+  <meta name="keywords" content="魔術方塊公式,PLL,OLL,F2L,速解公式,Rubik's Cube algorithms">
+  <link rel="canonical" href="https://rubic.inc.tw/algorithms.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="公式速查表 — 魔術方塊 PLL / OLL / F2L">
+  <meta property="og:description" content="點擊即可在 3D 模型上演示的公式速查表。">
+  <meta property="og:image" content="https://rubic.inc.tw/img/og-image.png">
+  <meta property="og:url" content="https://rubic.inc.tw/algorithms.html">
+  <meta property="og:locale" content="zh_TW">
+
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://rubic.inc.tw/"},
+      {"@type": "ListItem", "position": 2, "name": "公式速查表", "item": "https://rubic.inc.tw/algorithms.html"}
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <svg class="cube-icon" viewBox="0 0 36 36" aria-hidden="true">
+          <rect x="1" y="1" width="10" height="10" rx="1" fill="#b71234"/>
+          <rect x="13" y="1" width="10" height="10" rx="1" fill="#ff5800"/>
+          <rect x="25" y="1" width="10" height="10" rx="1" fill="#0046ad"/>
+          <rect x="1" y="13" width="10" height="10" rx="1" fill="#009b48"/>
+          <rect x="13" y="13" width="10" height="10" rx="1" fill="#ffffff" stroke="#ccc" stroke-width="0.5"/>
+          <rect x="25" y="13" width="10" height="10" rx="1" fill="#ffd500"/>
+          <rect x="1" y="25" width="10" height="10" rx="1" fill="#ff5800"/>
+          <rect x="13" y="25" width="10" height="10" rx="1" fill="#0046ad"/>
+          <rect x="25" y="25" width="10" height="10" rx="1" fill="#b71234"/>
+        </svg>
+        <span>魔術方塊教學</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="切換導航列">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="main-nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">首頁</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">學習</a>
+            <ul class="dropdown-menu">
+              <li><h6 class="dropdown-header">基礎</h6></li>
+              <li><a class="dropdown-item" href="tutorial.html">符號教學</a></li>
+              <li><a class="dropdown-item" href="solve.html">層先法解題</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><h6 class="dropdown-header">進階</h6></li>
+              <li><a class="dropdown-item active" href="algorithms.html">公式速查表</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="timer.html" data-i18n="nav.timer">計時器</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav.about">關於</a></li>
+        </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <button id="theme-toggle-btn" class="theme-toggle" type="button" aria-label="切換深色模式"><i class="bi bi-moon-fill"></i></button>
+          <button id="lang-toggle-btn" class="btn btn-outline-secondary btn-sm lang-toggle" type="button" data-lang-switch="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="container mt-3">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html" data-i18n="nav.home">首頁</a></li>
+      <li class="breadcrumb-item active" aria-current="page" data-i18n="nav.algorithms">公式表</li>
+    </ol>
+  </nav>
+
+  <main class="container py-4">
+    <header class="text-center mb-4">
+      <h1 class="fw-bold" data-i18n="algorithms.title">公式速查表</h1>
+      <p class="lead text-body-secondary" data-i18n="algorithms.subtitle">常用魔術方塊公式整理</p>
+    </header>
+
+    <div class="row g-4">
+      <!-- 左欄：3D 方塊 -->
+      <div class="col-lg-4">
+        <div class="sticky-lg-top" style="top:5rem">
+          <div class="cube-container" id="algo-cube"></div>
+          <div class="cube-controls mt-3">
+            <button class="btn btn-outline-secondary" onclick="document.getElementById('algo-cube') && window._algoCube && window._algoCube.reset()">
+              <i class="bi bi-arrow-counterclockwise"></i> 重置
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右欄：篩選 + 公式卡片 -->
+      <div class="col-lg-8">
+        <!-- 篩選列 -->
+        <div class="d-flex flex-wrap gap-2 mb-3 align-items-center">
+          <div class="btn-group" role="group" aria-label="分類篩選">
+            <button class="btn btn-outline-secondary active algo-filter-btn" data-filter="all" data-i18n="algorithms.categories.all">全部</button>
+            <button class="btn btn-outline-primary algo-filter-btn" data-filter="pll">PLL</button>
+            <button class="btn btn-outline-warning algo-filter-btn" data-filter="oll">OLL</button>
+            <button class="btn btn-outline-success algo-filter-btn" data-filter="f2l">F2L</button>
+          </div>
+          <input type="search" class="form-control algo-search" id="algo-search" data-i18n-placeholder="algorithms.search" placeholder="搜尋公式…">
+        </div>
+
+        <!-- 公式卡片網格 -->
+        <div class="row g-3" id="algo-grid">
+          <!-- 由 algorithms.js 動態渲染 -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-4 bg-body-tertiary border-top">
+    <div class="container text-center">
+      <p class="mb-1">© 2026 魔術方塊教學</p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://rubic.inc.tw/index.html">rubic.inc.tw</a>
+        <a href="https://github.com/raymond180/rubic/" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://github.com/raymond180/rubic/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/cube.js"></script>
+  <script src="js/algorithms.js"></script>
+</body>
+</html>
